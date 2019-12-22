@@ -431,7 +431,7 @@ void WMSPreferencesDialog::httpRequestFinished(QNetworkReply * reply)
             // Redirected
                 requestCapabilities(reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl());
                 curReply->deleteLater();
-                curReply = NULL;
+                curReply = nullptr;
                 return;
             default:
                 QString reason = reply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString();
@@ -441,7 +441,7 @@ void WMSPreferencesDialog::httpRequestFinished(QNetworkReply * reply)
                                   tr("Download failed: %1.")
                                   .arg(statusCode)); */
                 curReply->deleteLater();
-                curReply = NULL;
+                curReply = nullptr;
                 return;
         }
     }
@@ -456,7 +456,7 @@ void WMSPreferencesDialog::httpRequestFinished(QNetworkReply * reply)
 //    qDebug() << src;
     theXmlDoc.setContent(buf);
     curReply->deleteLater();
-    curReply = NULL;
+    curReply = nullptr;
 
 
     QDomElement docElem = theXmlDoc.documentElement();
@@ -480,7 +480,7 @@ void WMSPreferencesDialog::httpRequestFinished(QNetworkReply * reply)
     styleList.clear();
     QDomElement layElem = capElem.firstChildElement("Layer");
     while(!layElem.isNull()) {
-        QTreeWidgetItem* it = parseLayer(layElem, NULL);
+        QTreeWidgetItem* it = parseLayer(layElem, nullptr);
         tvWmsLayers->addTopLevelItem(it);
         tvWmsLayers->expandItem(it);
 
@@ -574,7 +574,7 @@ QTreeWidgetItem * WMSPreferencesDialog::parseLayer(const QDomElement& aLayerElem
                               QTreeWidgetItem* aLayerItem)
 {
     if (aLayerElem.tagName() != "Layer")
-        return NULL;
+        return nullptr;
 
     QDomElement title = aLayerElem.firstChildElement("Title");
     QDomElement name = aLayerElem.firstChildElement("Name");

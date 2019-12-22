@@ -167,7 +167,7 @@ MemoryBackend::~MemoryBackend()
 {
 //    CoordTree::Iterator it;
 //    p->theRTree.GetFirst(it);
-//    while (!p->theRTree.IsNull(it)) {
+//    while (!p->theRTree.isNull(it)) {
 //        delete *it;
 //        p->theRTree.GetNext(it);
 //    }
@@ -186,7 +186,7 @@ Node * MemoryBackend::allocNode(ILayer* l, const Node& other)
     Node* f;
     f = new (std::nothrow) Node(other);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -200,7 +200,7 @@ Node * MemoryBackend::allocNode(ILayer* l, const QPointF& aCoord)
     Node* f;
     f = new (std::nothrow) Node(aCoord);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -214,7 +214,7 @@ TrackNode * MemoryBackend::allocTrackNode(ILayer* l, const QPointF& aCoord)
     TrackNode* f;
     f = new (std::nothrow) TrackNode(aCoord);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -228,7 +228,7 @@ PhotoNode * MemoryBackend::allocPhotoNode(ILayer* l, const QPointF& aCoord)
     PhotoNode* f;
     f = new (std::nothrow) PhotoNode(aCoord);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -242,7 +242,7 @@ PhotoNode * MemoryBackend::allocPhotoNode(ILayer* l, const Node& other)
     PhotoNode* f;
     f = new (std::nothrow) PhotoNode(other);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -256,7 +256,7 @@ PhotoNode * MemoryBackend::allocPhotoNode(ILayer* l, const TrackNode& other)
     PhotoNode* f;
     f = new (std::nothrow) PhotoNode(other);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = f->BBox;
     if (!f->BBox.isNull()) {
@@ -275,7 +275,7 @@ Way * MemoryBackend::allocWay(ILayer* /*l*/)
     Way* f;
     f = new (std::nothrow) Way();
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = CoordBox();
     return f;
@@ -286,7 +286,7 @@ Way * MemoryBackend::allocWay(ILayer* /*l*/, const Way& other)
     Way* f;
     f = new (std::nothrow) Way(other);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = CoordBox();
     return f;
@@ -297,7 +297,7 @@ Relation * MemoryBackend::allocRelation(ILayer* /*l*/)
     Relation* f;
     f = new (std::nothrow) Relation();
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = CoordBox();
     return f;
@@ -308,7 +308,7 @@ Relation * MemoryBackend::allocRelation(ILayer* /*l*/, const Relation& other)
     Relation* f;
     f = new (std::nothrow) Relation(other);
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = CoordBox();
     return f;
@@ -319,7 +319,7 @@ TrackSegment * MemoryBackend::allocSegment(ILayer* /*l*/)
     TrackSegment* f;
     f = new (std::nothrow) TrackSegment();
     if (!f)
-        return NULL;
+        return nullptr;
 
     p->AllocFeatures[f] = CoordBox();
     return f;

@@ -128,7 +128,7 @@ protected:
     virtual QString getQuery(int x, int y, int z) const;
     virtual bool isValid(int x, int y, int z) const;
     virtual QPixmap getPixmap(const QRectF& /*wgs84Bbox*/, const QRectF& /*projBbox*/, const QRect& /*size*/) const { return QPixmap(); }
-    virtual QMenu* getMenu() const { return NULL; }
+    virtual QMenu* getMenu() const { return nullptr; }
 
 private:
     virtual QString getQ(double longitude, double latitude, int zoom) const;

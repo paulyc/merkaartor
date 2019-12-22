@@ -257,7 +257,7 @@ public slots:
     void applyPainters(GlobalPainter* theGlobalPainter, QList<Painter>* thePainters);
 
 public:
-    bool importFiles(Document * mapDocument, const QStringList & filesNames, QStringList * importedFileNames = NULL, bool useGdal = false);
+    bool importFiles(Document * mapDocument, const QStringList & filesNames, QStringList * importedFileNames = nullptr, bool useGdal = false);
     void loadUrl(const QString& urlString);
     void loadUrl(const QUrl& u);
     void loadDocument(QString fn);

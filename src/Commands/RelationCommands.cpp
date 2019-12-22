@@ -102,9 +102,9 @@ RelationAddFeatureCommand * RelationAddFeatureCommand::fromXML(Document * d, QXm
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->theRelation = Feature::getRelationOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::OsmRelation, stream.attributes().value("relation").toString().toLongLong()));
     Feature* F;
@@ -118,7 +118,7 @@ RelationAddFeatureCommand * RelationAddFeatureCommand::fromXML(Document * d, QXm
         F = (Feature*) Feature::getRelationOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::OsmRelation, stream.attributes().value("road").toString().toLongLong()));
     } else {
         if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-            return NULL;
+            return nullptr;
     }
     a->Role = stream.attributes().value("role").toString();
     a->theMapFeature = F;
@@ -237,12 +237,12 @@ RelationRemoveFeatureCommand * RelationRemoveFeatureCommand::fromXML(Document * 
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->theRelation = Feature::getRelationOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::OsmRelation, stream.attributes().value("relation").toString().toLongLong()));
-    Feature* F = NULL;
+    Feature* F = nullptr;
     if (stream.attributes().value("featureclass") == "Node") {
         F = (Feature*) Feature::getNodeOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::Point, stream.attributes().value("feature").toString().toLongLong()));
     } else
@@ -253,7 +253,7 @@ RelationRemoveFeatureCommand * RelationRemoveFeatureCommand::fromXML(Document * 
         F = (Feature*) Feature::getRelationOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::OsmRelation, stream.attributes().value("feature").toString().toLongLong()));
     } else {
         if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-            return NULL;
+            return nullptr;
     }
     a->theMapFeature = F;
     a->Idx = stream.attributes().value("index").toString().toInt();

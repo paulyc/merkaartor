@@ -180,7 +180,7 @@ Feature* ImportCSVDialog::generateOSM(Layer* l, QString line)
 
     QStringList flds = line.split(m_delim);
     if (flds.size() < 2)
-        return NULL;
+        return nullptr;
 
     Node *N = g_backend.allocNode(l, Coord(0, 0));
     int lidx=0;
@@ -232,7 +232,7 @@ Feature* ImportCSVDialog::generateOSM(Layer* l, QString line)
     }
     if (!hasLat || !hasLon) {
         g_backend.deallocFeature(l, N);
-        return NULL;
+        return nullptr;
     }
     if (CSVProjection.projIsLatLong())
         N->setPosition(p);
@@ -253,7 +253,7 @@ void ImportCSVDialog::generatePreview(int /*sel*/)
     int l=0;
     while (l<4 && !m_dev->atEnd()) {
         line = m_dev->readLine().trimmed();
-        Feature* F = generateOSM(NULL, line);
+        Feature* F = generateOSM(nullptr, line);
         if (F) {
             previewText += F->toXML(2);
             delete F;

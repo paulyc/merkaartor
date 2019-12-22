@@ -56,7 +56,7 @@ class CommandList : public Command
 {
     public:
         CommandList();
-        CommandList(QString aDesc, Feature* aFeat=NULL);
+        CommandList(QString aDesc, Feature* aFeat=nullptr);
         virtual ~CommandList();
 
         virtual void undo();

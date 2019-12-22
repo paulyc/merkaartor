@@ -30,12 +30,12 @@
 //#include "MerkaartorPreferences.h"
 
 QGPS::QGPS(QWidget *parent)
-    : MDockAncestor(parent), gpsDevice(0)
+    : MDockAncestor(parent), gpsDevice(nullptr)
 {
     setupUi(getWidget());
     setObjectName("GPSMainWindow");
 
-    int w = fontMetrics().width("360N 60'60\" W");
+    int w = fontMetrics().horizontalAdvance("360N 60'60\" W");
     txtLatitude->setFixedWidth(w);
     txtLongitude->setFixedWidth(w);
     txtAltitude->setFixedWidth(w);

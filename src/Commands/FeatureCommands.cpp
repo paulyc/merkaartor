@@ -163,7 +163,7 @@ SetTagCommand * SetTagCommand::fromXML(Document * d, QXmlStreamReader& stream)
     Feature* F;
     if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong())))) {
         qDebug() << "SetTagCommand::fromXML: Undefined feature: " << stream.attributes().value("feature").toString();
-        return NULL;
+        return nullptr;
     }
 
     SetTagCommand* a = new SetTagCommand(F);
@@ -179,11 +179,11 @@ SetTagCommand * SetTagCommand::fromXML(Document * d, QXmlStreamReader& stream)
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
 
     a->description = QApplication::tr("Set tag '%1=%2' on %3").arg(a->theK).arg(a->theV).arg(a->theFeature->description());
 
@@ -271,7 +271,7 @@ ClearTagsCommand * ClearTagsCommand::fromXML(Document * d, QXmlStreamReader& str
 {
     Feature* F;
     if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-        return NULL;
+        return nullptr;
 
     ClearTagsCommand* a = new ClearTagsCommand(F);
     a->setId(stream.attributes().value("xml:id").toString());
@@ -279,11 +279,11 @@ ClearTagsCommand * ClearTagsCommand::fromXML(Document * d, QXmlStreamReader& str
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
 
     stream.readNext();
     while(!stream.atEnd() && !stream.isEndElement()) {
@@ -380,7 +380,7 @@ ClearTagCommand * ClearTagCommand::fromXML(Document * d, QXmlStreamReader& strea
 {
     Feature* F;
     if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-        return NULL;
+        return nullptr;
 
     ClearTagCommand* a = new ClearTagCommand(F);
     a->setId(stream.attributes().value("xml:id").toString());
@@ -391,11 +391,11 @@ ClearTagCommand * ClearTagCommand::fromXML(Document * d, QXmlStreamReader& strea
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
 
     a->description = QApplication::tr("Remove tag '%1' from %2").arg(a->theK).arg(a->theFeature->description());
 

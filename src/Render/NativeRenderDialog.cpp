@@ -37,7 +37,7 @@ NativeRenderDialog::NativeRenderDialog(Document *aDoc, const CoordBox& aCoordBox
     thePrinter = new QPrinter();
     thePrinter->setDocName(aDoc->title());
 
-    mapview = new MapView(NULL);
+    mapview = new MapView(nullptr);
     mapview->setDocument(theDoc);
 
     preview = new QPrintPreviewDialog( thePrinter, parent );
@@ -176,7 +176,7 @@ void NativeRenderDialog::setPrinterOptions() {
 void NativeRenderDialog::exportPDF()
 {
     QString s;
-    QFileDialog dlg(NULL, tr("Output filename"), QString("%1/%2.pdf").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("PDF files (*.pdf)") + "\n" + tr("All Files (*)"));
+    QFileDialog dlg(nullptr, tr("Output filename"), QString("%1/%2.pdf").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("PDF files (*.pdf)") + "\n" + tr("All Files (*)"));
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.setDefaultSuffix("pdf");
     dlg.setAcceptMode(QFileDialog::AcceptSave);
@@ -185,7 +185,7 @@ void NativeRenderDialog::exportPDF()
         if (dlg.selectedFiles().size())
             s = dlg.selectedFiles()[0];
     }
-//    QString s = QFileDialog::getSaveFileName(NULL,tr("Output filename"),"",tr("PDF files (*.pdf)"));
+//    QString s = QFileDialog::getSaveFileName(nullptr,tr("Output filename"),"",tr("PDF files (*.pdf)"));
     if (s.isNull())
         return;
 
@@ -205,7 +205,7 @@ void NativeRenderDialog::exportPDF()
 void NativeRenderDialog::exportRaster()
 {
     QString s;
-    QFileDialog dlg(NULL, tr("Output filename"), QString("%1/%2.png").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("Image files (*.png *.jpg)") + "\n" + tr("All Files (*)"));
+    QFileDialog dlg(nullptr, tr("Output filename"), QString("%1/%2.png").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("Image files (*.png *.jpg)") + "\n" + tr("All Files (*)"));
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.setDefaultSuffix("png");
     dlg.setAcceptMode(QFileDialog::AcceptSave);
@@ -214,7 +214,7 @@ void NativeRenderDialog::exportRaster()
         if (dlg.selectedFiles().size())
             s = dlg.selectedFiles()[0];
     }
-//    QString s = QFileDialog::getSaveFileName(NULL,tr("Output filename"),"",tr("Image files (*.png *.jpg)"));
+//    QString s = QFileDialog::getSaveFileName(nullptr,tr("Output filename"),"",tr("Image files (*.png *.jpg)"));
     if (s.isNull())
         return;
 
@@ -241,7 +241,7 @@ void NativeRenderDialog::exportRaster()
 void NativeRenderDialog::exportSVG()
 {
     QString s;
-    QFileDialog dlg(NULL, tr("Output filename"), QString("%1/%2.svg").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("SVG files (*.svg)") + "\n" + tr("All Files (*)"));
+    QFileDialog dlg(nullptr, tr("Output filename"), QString("%1/%2.svg").arg(M_PREFS->getworkingdir()).arg(tr("untitled")), tr("SVG files (*.svg)") + "\n" + tr("All Files (*)"));
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.setDefaultSuffix("svg");
     dlg.setAcceptMode(QFileDialog::AcceptSave);
@@ -250,7 +250,7 @@ void NativeRenderDialog::exportSVG()
         if (dlg.selectedFiles().size())
             s = dlg.selectedFiles()[0];
     }
-//    QString s = QFileDialog::getSaveFileName(NULL,tr("Output filename"),"",tr("SVG files (*.svg)"));
+//    QString s = QFileDialog::getSaveFileName(nullptr,tr("Output filename"),"",tr("SVG files (*.svg)"));
     if (s.isNull())
         return;
 

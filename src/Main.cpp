@@ -18,7 +18,7 @@
 
 #include "IMapAdapterFactory.h"
 
-FILE* pLogFile = NULL;
+FILE* pLogFile = nullptr;
 
 void showVersion()
 {
@@ -253,7 +253,7 @@ int main(int argc, char** argv)
     qDebug() << "**** " << QDateTime::currentDateTime().toString(Qt::ISODate) << " -- Ending " << QString("%1 %2").arg(qApp->applicationName()).arg(STRINGIFY(VERSION));
     if(pLogFile) {
         fclose(pLogFile);
-        pLogFile = NULL;
+        pLogFile = nullptr;
     }
 
 //    delete fatHandler;

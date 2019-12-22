@@ -50,7 +50,7 @@ void CreateAreaInteraction::paintEvent(QPaintEvent* anEvent, QPainter& thePainte
 {
     if (theRoad && (!theRoad->layer() || theRoad->isDeleted())) { // The road was begon and then undoed. Restarting....
         HaveFirst = false;
-        theRoad = NULL;
+        theRoad = nullptr;
         view()->setInteracting(false);
     }
 
@@ -164,7 +164,7 @@ void CreateAreaInteraction::finishRoad(CommandList* L)
     theRoad = 0;
     view()->setInteracting(false);
 
-    MDiscardableMessage dlg(NULL,
+    MDiscardableMessage dlg(nullptr,
         MainWindow::tr("Add a hole."),
         MainWindow::tr("Do you want to add a(nother) hole to this area?"));
     if (dlg.check() == QDialog::Rejected) {
@@ -210,8 +210,8 @@ void CreateAreaInteraction::addToRoad(QMouseEvent* anEvent, Feature* Snap, Comma
 void CreateAreaInteraction::snapMouseReleaseEvent(QMouseEvent* anEvent, Feature* aFeature)
 {
     if (M_PREFS->getMouseSingleButton() && anEvent->button() == Qt::RightButton) {
-        LastRoad = NULL;
-        theRelation = NULL;
+        LastRoad = nullptr;
+        theRelation = nullptr;
         HaveFirst = false;
         EndNow = false;
         view()->setInteracting(false);
@@ -242,8 +242,8 @@ void CreateAreaInteraction::snapMouseReleaseEvent(QMouseEvent* anEvent, Feature*
                 theMain->properties()->setSelection(theRelation);
             else
                 theMain->properties()->setSelection(LastRoad);
-            LastRoad = NULL;
-            theRelation = NULL;
+            LastRoad = nullptr;
+            theRelation = nullptr;
             HaveFirst = false;
             EndNow = false;
             view()->setInteracting(false);
@@ -267,7 +267,7 @@ void CreateAreaInteraction::closeAndFinish()
 
     Node* N = theRoad->getNode(0);
     CommandList* theList  = new CommandList(MainWindow::tr("Close Area %1").arg(theRoad->description()), theRoad);
-    addToRoad(NULL, N, theList);
+    addToRoad(nullptr, N, theList);
     document()->addHistory(theList);
     view()->invalidate(true, true, false);
     if (theRelation)

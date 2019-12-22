@@ -54,7 +54,7 @@ dashed blue-red (with a lot of red): pedestrian street/way where cycling is allo
  drawTrafficDirectionMarks="yes" labelColor="#ddddddff" labelScale="1.2" labelOffset="3"
  labelFont="DejaVu Sans Condensed,12,-1,5,50,0,0,0,0,0" labelTag="name" labelBackgroundColor="#ffffff7c" labelBackgroundTag=""
 >
-  <selector expr="not [cycleway] is _NULL_ and not [cycleway] isoneof (lane, track, opposite, opposite_lane, opposite_track)"/>
+  <selector expr="not [cycleway] is _nullptr_ and not [cycleway] isoneof (lane, track, opposite, opposite_lane, opposite_track)"/>
 </painter>
 
 <!-- usage of cycleway:left of cycleway:right -->
@@ -65,7 +65,7 @@ dashed blue-red (with a lot of red): pedestrian street/way where cycling is allo
  drawTrafficDirectionMarks="yes" labelColor="#ddddddff" labelScale="1.2" labelOffset="3"
  labelFont="DejaVu Sans Condensed,12,-1,5,50,0,0,0,0,0" labelTag="name" labelBackgroundColor="#ffffff7c" labelBackgroundTag=""
 >
-  <selector expr="not [cycleway:left] is _NULL_ or not [cycleway:right] is _NULL_"/>
+  <selector expr="not [cycleway:left] is _nullptr_ or not [cycleway:right] is _nullptr_"/>
 </painter>
 
 <!-- roads where bikes are not allowed: completely gray -->
@@ -263,7 +263,7 @@ dashed blue-red (with a lot of red): pedestrian street/way where cycling is allo
  fillColor="#999933cd"
  drawTrafficDirectionMarks="no" labelColor="#333333ff" labelScale="1.5" labelOffset="6"
  labelFont="DejaVu Sans Condensed,12,-1,5,50,0,0,0,0,0" labelTag="name" labelHalo="yes" labelArea="yes">
-  <selector expr="not [building] is _NULL_"/>
+  <selector expr="not [building] is _nullptr_"/>
 </painter>
 <painter
  zoomUnder="0.02" zoomUpper="1e+07"

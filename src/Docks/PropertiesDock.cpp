@@ -55,11 +55,11 @@ PropertiesDock::PropertiesDock(MainWindow* aParent)
     shortcutFilter->addOverride(Qt::Key_F2);
     shortcutFilter->addOverride(Qt::Key_Delete);
 
-    centerAction = new QAction(NULL, this);
+    centerAction = new QAction(nullptr, this);
     connect(centerAction, SIGNAL(triggered()), this, SLOT(on_centerAction_triggered()));
-    centerZoomAction = new QAction(NULL, this);
+    centerZoomAction = new QAction(nullptr, this);
     connect(centerZoomAction, SIGNAL(triggered()), this, SLOT(on_centerZoomAction_triggered()));
-    selectAction = new QAction(NULL, this);
+    selectAction = new QAction(nullptr, this);
     connect(selectAction, SIGNAL(triggered()), this, SLOT(on_Member_selected()));
 
     loadTemplates();
@@ -76,7 +76,7 @@ PropertiesDock::~PropertiesDock(void)
 
 static bool isChildOfSingleRoadInner(Feature *mapFeature)
 {
-    return Way::GetSingleParentRoadInner(mapFeature) != NULL;
+    return Way::GetSingleParentRoadInner(mapFeature) != nullptr;
 }
 
 static bool isChildOfArea(Feature *mapFeature)
@@ -89,7 +89,7 @@ static bool isChildOfArea(Feature *mapFeature)
 
 static bool isChildOfSingleRoad(Feature *mapFeature)
 {
-    return Way::GetSingleParentRoad(mapFeature) != NULL;
+    return Way::GetSingleParentRoad(mapFeature) != nullptr;
 }
 
 static bool isChildOfSingleRelation(Feature *mapFeature)
@@ -259,7 +259,7 @@ void PropertiesDock::setMultiSelection(const QList<Feature*>& aFeatureList)
     MultiUi.TagView->setItemDelegate(delegate);
     Main->info()->setHtml("");
     #ifdef GEOIMAGE
-    Main->geoImage()->setImage((Node *)NULL);
+    Main->geoImage()->setImage((Node *)nullptr);
     #endif
     CurrentTagView = MultiUi.TagView;
     theModel->setFeature(Current);
@@ -507,8 +507,8 @@ void PropertiesDock::resetValues()
     Highlighted.clear();
 
     // Tables that might need column sizing
-    CurrentTagView = NULL;
-    CurrentMembersView = NULL;
+    CurrentTagView = nullptr;
+    CurrentMembersView = nullptr;
 
     // to prevent slots to change the values also
     QList<Feature*> Current = Selection;
@@ -603,7 +603,7 @@ void PropertiesDock::resetValues()
     {
         Main->info()->setHtml("");
         #ifdef GEOIMAGE
-        Main->geoImage()->setImage((Node *)NULL);
+        Main->geoImage()->setImage((Node *)nullptr);
         #endif
         MultiUi.TagView->setModel(theModel);
         MultiUi.TagView->setItemDelegate(delegate);
@@ -669,7 +669,7 @@ void PropertiesDock::on_tag_changed(QString k, QString v)
     if (!FullSelection.size())
         return;
     Feature* F = FullSelection[0];
-    if (F->tagValue(k, "__NULL__") != v) {
+    if (F->tagValue(k, "__nullptr__") != v) {
         Main->document()->addHistory(new SetTagCommand(F,k,v,Main->document()->getDirtyOrOriginLayer(F->layer())));
         Main->invalidateView();
     }

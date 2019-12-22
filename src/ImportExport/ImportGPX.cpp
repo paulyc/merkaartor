@@ -106,7 +106,7 @@ static void importTrkSeg(const QDomElement& Root, Document* theDocument, Layer* 
     if (Root.hasAttribute("xml:id"))
         S->setId(IFeature::FId(IFeature::GpxSegment, Root.attribute("xml:id").toLongLong()));
 
-    Node* lastPoint = NULL;
+    Node* lastPoint = nullptr;
 
     /* Counters to keep the number of found normal and anonymized (if detection is enabled) points. */
     int nAnon = 0, nNormal = 0;
@@ -185,7 +185,7 @@ static void importRte(const QDomElement& Root, Document* theDocument, Layer* the
     if (Root.hasAttribute("xml:id"))
         S->setId(IFeature::FId(IFeature::GpxSegment, Root.attribute("xml:id").toLongLong()));
 
-    TrackNode* lastPoint = NULL;
+    TrackNode* lastPoint = nullptr;
 
     for(QDomNode n = Root.firstChild(); !n.isNull(); n = n.nextSibling())
     {

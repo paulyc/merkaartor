@@ -43,7 +43,7 @@ bool ImportNMEA::import(Layer* aLayer)
     QTextStream in(Device);
 
     theLayer = dynamic_cast <TrackLayer *> (aLayer);
-    theList = new CommandList(QApplication::tr("Import NMEA"), NULL);
+    theList = new CommandList(QApplication::tr("Import NMEA"), nullptr);
 
     TrackSegment* TS = g_backend.allocSegment(aLayer);
 
@@ -184,15 +184,15 @@ bool ImportNMEA::importGLL (QString line)
 TrackNode* ImportNMEA::importRMC (QString line)
 {
     if (line.count('$') > 1)
-        return NULL;
+        return nullptr;
 
     QStringList tokens = line.split(",");
     if (tokens.size() < 10)
-        return NULL;
+        return nullptr;
 
     //int time = tokens[1];
     if (tokens[2] != "A")
-        return NULL;
+        return nullptr;
 
     qreal lat = tokens[3].left(2).toDouble();
     qreal latmin = tokens[3].mid(2).toDouble();
@@ -212,7 +212,7 @@ TrackNode* ImportNMEA::importRMC (QString line)
     if (!date.isValid()) date = QDateTime::fromString(strDate, "ddMMyyHHmmss.z");
     if (!date.isValid()) date = QDateTime::fromString(strDate, "ddMMyyHHmmss");
     if (!date.isValid()) {
-        return NULL;
+        return nullptr;
     }
 
     if (date.date().year() < 1970)

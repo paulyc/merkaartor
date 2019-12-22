@@ -22,6 +22,8 @@
 #include <QStringList>
 #include <QLineF>
 
+#include <algorithm>
+
 namespace NameFinder {
 
     XmlStreamReader::XmlStreamReader(QIODevice *device, QPointF coord) {
@@ -50,7 +52,7 @@ namespace NameFinder {
         }
         myDevice->close();
 
-        qSort(myResults.begin(), myResults.end());
+        std::sort(myResults.begin(), myResults.end());
 
 // Implement error handling
         return true;

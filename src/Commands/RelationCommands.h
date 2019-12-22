@@ -12,9 +12,9 @@ class Layer;
 class RelationAddFeatureCommand : public Command
 {
     public:
-        RelationAddFeatureCommand(Relation* R = NULL);
-        RelationAddFeatureCommand(Relation* R, const QString& Role, Feature* W, Layer* aLayer=NULL);
-        RelationAddFeatureCommand(Relation* R, const QString& Role, Feature* W, int Position, Layer* aLayer=NULL);
+        RelationAddFeatureCommand(Relation* R = nullptr);
+        RelationAddFeatureCommand(Relation* R, const QString& Role, Feature* W, Layer* aLayer=nullptr);
+        RelationAddFeatureCommand(Relation* R, const QString& Role, Feature* W, int Position, Layer* aLayer=nullptr);
         ~RelationAddFeatureCommand(void);
 
         virtual void undo();
@@ -36,9 +36,9 @@ class RelationAddFeatureCommand : public Command
 class RelationRemoveFeatureCommand : public Command
 {
     public:
-        RelationRemoveFeatureCommand(Relation* R = NULL);
-        RelationRemoveFeatureCommand(Relation* R, Feature* W, Layer* aLayer=NULL);
-        RelationRemoveFeatureCommand(Relation* R, int anIdx, Layer* aLayer=NULL);
+        RelationRemoveFeatureCommand(Relation* R = nullptr);
+        RelationRemoveFeatureCommand(Relation* R, Feature* W, Layer* aLayer=nullptr);
+        RelationRemoveFeatureCommand(Relation* R, int anIdx, Layer* aLayer=nullptr);
         ~RelationRemoveFeatureCommand(void);
 
         virtual void undo();

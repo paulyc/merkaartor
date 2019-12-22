@@ -21,8 +21,8 @@ class PictureViewerDialog: public QDialog , public Ui::PictureViewerDialog
 	Q_OBJECT
 
 public:
-    PictureViewerDialog(const QString& title, const QString &filename, QWidget *parent=NULL);
-	PictureViewerDialog(const QString& title, const QPixmap& thePixmap, QWidget *parent=NULL);
+    PictureViewerDialog(const QString& title, const QString &filename, QWidget *parent=nullptr);
+	PictureViewerDialog(const QString& title, const QPixmap& thePixmap, QWidget *parent=nullptr);
 
 private:
 	QString m_filename;

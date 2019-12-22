@@ -42,8 +42,8 @@ class TagTemplateWidget: public QObject
     public:
         QString id() {return (!theId.isEmpty() ? theId : theTag);}
         QString tag() {return theTag;}
-        virtual QWidget*	getWidget(const Feature* /* F */, const MapView* /*V*/) {return NULL;}
-        virtual TagTemplateWidgetValue* getCurrentValue() {return NULL;}
+        virtual QWidget*	getWidget(const Feature* /* F */, const MapView* /*V*/) {return nullptr;}
+        virtual TagTemplateWidgetValue* getCurrentValue() {return nullptr;}
 
         virtual void apply(const Feature*) {}
 

@@ -28,7 +28,7 @@ Projection::Projection(void)
 
 
 #ifndef _MOBILE
-    theProj = NULL;
+    theProj = nullptr;
     theWGS84Proj = Projection::getProjection("+proj=longlat +ellps=WGS84 +datum=WGS84");
     setProjectionType(M_PREFS->getProjectionType());
 #endif
@@ -179,7 +179,7 @@ QPointF Projection::projProject(const QPointF & Map) const
     qreal x = angToRad(Map.x());
     qreal y = angToRad(Map.y());
 
-    projTransformFromWGS84(1, 0, &x, &y, NULL);
+    projTransformFromWGS84(1, 0, &x, &y, nullptr);
 
     return QPointF(x, y);
 }
@@ -189,7 +189,7 @@ Coord Projection::projInverse(const QPointF & pProj) const
     qreal x = pProj.x();
     qreal y = pProj.y();
 
-    projTransformToWGS84(1, 0, &x, &y, NULL);
+    projTransformToWGS84(1, 0, &x, &y, nullptr);
 
     return Coord(radToAng(x), radToAng(y));
 }
@@ -222,7 +222,7 @@ bool Projection::setProjectionType(QString aProjectionType)
 #ifndef _MOBILE
     if (theProj) {
         pj_free(theProj);
-        theProj = NULL;
+        theProj = nullptr;
     }
 #endif // _MOBILE
 
@@ -272,7 +272,7 @@ bool Projection::setProjectionType(QString aProjectionType)
     } catch (...) {
         return false;
     }
-    return (theProj != NULL || IsLatLong || IsMercator);
+    return (theProj != nullptr || IsLatLong || IsMercator);
 #else
     return false;
 #endif // _MOBILE

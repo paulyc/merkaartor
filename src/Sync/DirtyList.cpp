@@ -325,7 +325,7 @@ bool DirtyListDescriber::showChanges(QWidget* aParent)
             if (!Ui.edChangesetComment->text().isEmpty()) {
                 glbChangeSetComment = Ui.edChangesetComment->text();
                 ok = true;
-            } else if (QMessageBox::question(NULL,
+            } else if (QMessageBox::question(nullptr,
                         QApplication::tr("Use empty changeset comment?"),
                         QApplication::tr("The changeset comment is empty. It's considered a courtesy to your fellow mappers to provide a good comment, so everyone knows what your change does and with what intention.\n"
                             "Do you still wish to commit empty changeset comment?"), QMessageBox::Yes, QMessageBox::No )

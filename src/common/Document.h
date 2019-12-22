@@ -50,9 +50,9 @@ public:
 
     void add(Layer* aLayer);
     void moveLayer(Layer* aLayer, int pos);
-    ImageMapLayer* addImageLayer(ImageMapLayer* aLayer = NULL);
-    DrawingLayer* addDrawingLayer(DrawingLayer* aLayer = NULL);
-    FilterLayer* addFilterLayer(FilterLayer* aLayer = NULL);
+    ImageMapLayer* addImageLayer(ImageMapLayer* aLayer = nullptr);
+    DrawingLayer* addDrawingLayer(DrawingLayer* aLayer = nullptr);
+    FilterLayer* addFilterLayer(FilterLayer* aLayer = nullptr);
     void remove(Layer* aLayer);
     bool exists(Layer* aLayer) const;
     bool exists(Feature* aFeature) const;
@@ -76,7 +76,7 @@ public:
 
     void setDirtyLayer(DirtyLayer* aLayer);
     Layer* getDirtyLayer();
-    Layer* getDirtyOrOriginLayer(Layer* aLayer = NULL);
+    Layer* getDirtyOrOriginLayer(Layer* aLayer = nullptr);
     Layer* getDirtyOrOriginLayer(Feature* F);
     int getDirtySize() const;
 
@@ -84,7 +84,7 @@ public:
     UploadedLayer* getUploadedLayer() const;
 
     void exportOSM(QWidget* main, QIODevice* device, QList<Feature*> aFeatures);
-    QList<Feature*> exportCoreOSM(QList<Feature*> aFeatures, bool forCopyPaste=false, QProgressDialog * progress=NULL);
+    QList<Feature*> exportCoreOSM(QList<Feature*> aFeatures, bool forCopyPaste=false, QProgressDialog * progress=nullptr);
     bool toXML(QXmlStreamWriter& stream, bool asTemplate, QProgressDialog * progress);
     static Document* fromXML(QString title, QXmlStreamReader& stream, qreal version, LayerDock* aDock, QProgressDialog * progress);
 
@@ -132,7 +132,7 @@ public:
     static Document* getDocumentFromXml(QDomDocument* theXmlDoc);
     static Document* getDocumentFromClipboard();
 
-    QList<Feature*> mergeDocument(Document *otherDoc, Layer* layer, CommandList* theList=NULL);
+    QList<Feature*> mergeDocument(Document *otherDoc, Layer* layer, CommandList* theList=nullptr);
 private:
     MapDocumentPrivate* p;
 

@@ -19,7 +19,7 @@
  backgroundColor="#ff9955ff" backgroundScale="1.2" backgroundOffset="2.5"
  foregroundColor="#dcdcdcff" foregroundScale="0.5" foregroundOffset="1"
 >
-  <selector expr="Type is Way and not [highway] is _NULL_ and [name] is _NULL_"/>
+  <selector expr="Type is Way and not [highway] is _nullptr_ and [name] is _nullptr_"/>
 </painter>
 <painter
  foregroundColor="#b9b9b9ff" foregroundScale="0" foregroundOffset="2"

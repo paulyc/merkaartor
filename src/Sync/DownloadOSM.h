@@ -78,9 +78,9 @@ class Downloader : public QObject
 bool downloadOSM(MainWindow* Main, const CoordBox& aBox , Document* theDocument);
 bool downloadMoreOSM(MainWindow* Main, const CoordBox& aBox , Document* theDocument);
 bool downloadFeatures(MainWindow* Main, const QList<Feature*>& aDownloadList , Document* theDocument);
-bool downloadFeature(MainWindow* Main, const IFeature::FId& id, Document* theDocument, Layer* theLayer=NULL);
-bool downloadFeatures(MainWindow* Main, const QList<IFeature::FId>& aDownloadList, Document* theDocument, Layer* theLayer=NULL);
-bool downloadMapdust(MainWindow* Main, const CoordBox& aBox, Document* theDocument, SpecialLayer* theLayer=NULL);
+bool downloadFeature(MainWindow* Main, const IFeature::FId& id, Document* theDocument, Layer* theLayer=nullptr);
+bool downloadFeatures(MainWindow* Main, const QList<IFeature::FId>& aDownloadList, Document* theDocument, Layer* theLayer=nullptr);
+bool downloadMapdust(MainWindow* Main, const CoordBox& aBox, Document* theDocument, SpecialLayer* theLayer=nullptr);
 
 bool checkForConflicts(Document* theDocument);
 

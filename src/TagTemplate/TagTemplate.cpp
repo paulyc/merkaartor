@@ -41,10 +41,10 @@ TagTemplateWidget::~TagTemplateWidget()
 TagTemplateWidget* TagTemplateWidget::fromXml(const QDomElement& e)
 {
     if (e.tagName() != "widget") {
-        return NULL;
+        return nullptr;
     }
 
-    TagTemplateWidget* aTW = NULL;
+    TagTemplateWidget* aTW = nullptr;
     const QString tp = e.attribute("type");
     if (tp == "combo") {
         aTW = TagTemplateWidgetCombo::fromXml(e);
@@ -157,7 +157,7 @@ TagTemplateWidgetCombo::~TagTemplateWidgetCombo()
 QWidget* TagTemplateWidgetCombo::getWidget(const Feature* F, const MapView* V)
 {
     if (theSelector && (theSelector->matches(F,V->pixelPerM()) != TagSelect_Match && theSelector->matches(F,V->pixelPerM()) != TagSelect_DefaultMatch))
-        return NULL;
+        return nullptr;
 
     QString lang = getDefaultLanguage();
     QString defLang = "en";
@@ -193,23 +193,23 @@ QWidget* TagTemplateWidgetCombo::getWidget(const Feature* F, const MapView* V)
     aCombo->setMinimumWidth(100);
     aLayout->addWidget(aCombo);
 
-    aCombo->addItem(tr("Undefined"), qVariantFromValue(new TagTemplateWidgetValue("__NULL__")));
-    QString val = F->tagValue(theTag, "__NULL__");
+    aCombo->addItem(tr("Undefined"), QVariant::fromValue(new TagTemplateWidgetValue("__nullptr__")));
+    QString val = F->tagValue(theTag, "__nullptr__");
     int idx = -1;
     for (int i=0; i<theValues.size(); ++i) {
         if (theValues[i]->theDescriptions.count(lang))
-            aCombo->addItem(theValues[i]->theDescriptions[lang], qVariantFromValue(theValues[i]));
+            aCombo->addItem(theValues[i]->theDescriptions[lang], QVariant::fromValue(theValues[i]));
         else
             if (theValues[i]->theDescriptions.count(defLang))
-                aCombo->addItem(theValues[i]->theDescriptions[defLang], qVariantFromValue(theValues[i]));
+                aCombo->addItem(theValues[i]->theDescriptions[defLang], QVariant::fromValue(theValues[i]));
             else
-                aCombo->addItem(theValues[i]->theTagValue,  qVariantFromValue(theValues[i]));
+                aCombo->addItem(theValues[i]->theTagValue,  QVariant::fromValue(theValues[i]));
 
         if (theValues[i]->theTagValue == val)
             idx = aCombo->count() - 1;
     }
 
-    if (val != "__NULL__") {
+    if (val != "__nullptr__") {
         if (idx == -1) {
             aCombo->insertItem(1, val);
             aCombo->setCurrentIndex(1);
@@ -294,7 +294,7 @@ void TagTemplateWidgetCombo::on_combo_activated(int idx)
     } else
         val = W->currentText();
 
-    if (val == "__NULL__")
+    if (val == "__nullptr__")
         emit tagCleared(theTag);
     else
         emit tagChanged(theTag, val);
@@ -309,7 +309,7 @@ void TagTemplateWidgetCombo::apply(const Feature*)
 QWidget* TagTemplateWidgetYesno::getWidget(const Feature* F, const MapView* V)
 {
     if (theSelector && (theSelector->matches(F,V->pixelPerM()) != TagSelect_Match && theSelector->matches(F,V->pixelPerM()) != TagSelect_DefaultMatch))
-        return NULL;
+        return nullptr;
 
     QString lang = getDefaultLanguage();
     QString defLang = "en";
@@ -336,7 +336,7 @@ QWidget* TagTemplateWidgetYesno::getWidget(const Feature* F, const MapView* V)
         else
             theDescription = theTag;
 
-    QString val = F->tagValue(theTag, "__NULL__");
+    QString val = F->tagValue(theTag, "__nullptr__");
     if (val == "yes" || val == "1" || val == "true")
         aCB->setCheckState(Qt::Checked);
     else
@@ -421,7 +421,7 @@ TagTemplateWidgetConstant::~TagTemplateWidgetConstant()
 QWidget* TagTemplateWidgetConstant::getWidget(const Feature* F, const MapView* V)
 {
     if (theSelector && (theSelector->matches(F,V->pixelPerM()) != TagSelect_Match && theSelector->matches(F,V->pixelPerM()) != TagSelect_DefaultMatch))
-        return NULL;
+        return nullptr;
 
     QString lang = getDefaultLanguage();
     QString defLang = "en";
@@ -491,15 +491,15 @@ void TagTemplateWidgetConstant::apply(const Feature* F)
     }
     bool Regexp = false;
     bool OK = true;
-    QString oldVal = F->tagValue(theTag, "__NULL__");
+    QString oldVal = F->tagValue(theTag, "__nullptr__");
     QString newVal = theValues[0]->theTagValue;
     QRegExp subst("\\$\\[(.+)\\]");
     subst.setMinimal(true);
     int pos = 0;
     while ((pos = subst.indexIn(newVal, pos)) != -1) {
         Regexp = true;
-        QString rep = F->tagValue(subst.cap(1), "__NULL__");
-        if (rep == "__NULL__") {
+        QString rep = F->tagValue(subst.cap(1), "__nullptr__");
+        if (rep == "__nullptr__") {
             OK = false;
             break;
         }
@@ -553,7 +553,7 @@ bool TagTemplateWidgetConstant::toXML(QDomElement& xParent, bool header)
 QWidget* TagTemplateWidgetEdit::getWidget(const Feature* F, const MapView* V)
 {
     if (theSelector && (theSelector->matches(F,V->pixelPerM()) != TagSelect_Match && theSelector->matches(F,V->pixelPerM()) != TagSelect_DefaultMatch))
-        return NULL;
+        return nullptr;
 
     QString lang = getDefaultLanguage();
     QString defLang = "en";
@@ -590,8 +590,8 @@ QWidget* TagTemplateWidgetEdit::getWidget(const Feature* F, const MapView* V)
     QLineEdit* aValue = new QLineEdit();
     aLayout->addWidget(aValue);
 
-    QString val = F->tagValue(theTag, "__NULL__");
-    if (val != "__NULL__")
+    QString val = F->tagValue(theTag, "__nullptr__");
+    if (val != "__nullptr__")
         aValue->setText(val);
 
     connect(aValue,SIGNAL(editingFinished()),this, SLOT(on_editingFinished()));
@@ -767,7 +767,7 @@ TagTemplate* TagTemplate::fromXml(const QDomElement& e, TagTemplates* templates)
     TagTemplate* aTemplate = new TagTemplate();
 
     if (e.tagName() != "template") {
-        return NULL;
+        return nullptr;
     }
 
     for(QDomNode n = e.firstChild(); !n.isNull(); n = n.nextSibling()) {
@@ -781,7 +781,7 @@ TagTemplate* TagTemplate::fromXml(const QDomElement& e, TagTemplates* templates)
         if (t.tagName() == "selector") {
             TagSelector* aSel = TagSelector::parse(t.attribute("expr"));
             if (!aSel)
-                return NULL;
+                return nullptr;
             aTemplate->setSelector(aSel);
         } else
         if (t.tagName() == "widget") {
@@ -870,10 +870,10 @@ QWidget* TagTemplates::getWidget(const Feature* F, const MapView* V)
 
     if (curTemplate) {
         disconnect(curTemplate, 0, this, 0);
-        curTemplate = NULL;
+        curTemplate = nullptr;
     }
     if (F != theFeature)
-        forcedTemplate = NULL;
+        forcedTemplate = nullptr;
     else
         curTemplate = forcedTemplate;
     theFeature = F;
@@ -908,12 +908,12 @@ QWidget* TagTemplates::getWidget(const Feature* F, const MapView* V)
     headLayout->addWidget(line);
 
     int idx = -1;
-    theCombo->addItem(tr("Undefined"), "__NULL__");
+    theCombo->addItem(tr("Undefined"), "__nullptr__");
     for (int i=0; i<items.size(); ++i) {
         if (items[i]->theDescriptions.count(lang))
-            theCombo->addItem(items[i]->theDescriptions[lang], qVariantFromValue(items[i]));
+            theCombo->addItem(items[i]->theDescriptions[lang], QVariant::fromValue(items[i]));
         else
-            theCombo->addItem(items[i]->theDescriptions[defLang], qVariantFromValue(items[i]));
+            theCombo->addItem(items[i]->theDescriptions[defLang], QVariant::fromValue(items[i]));
 
         if (forcedTemplate) {
             if (items[i] == forcedTemplate) {
@@ -981,7 +981,7 @@ TagTemplates* TagTemplates::fromXml(const QDomElement& e)
     TagTemplates* aTemplates = new TagTemplates();
 
     if (e.tagName() != "templates") {
-        return NULL;
+        return nullptr;
     }
 
     for(QDomNode n = e.firstChild(); !n.isNull(); n = n.nextSibling())
@@ -995,7 +995,7 @@ TagTemplates* TagTemplates::fromXml(const QDomElement& e)
             if (tmpl)
                 aTemplates->items.append(tmpl);
             else
-                return NULL;
+                return nullptr;
         } else
         if (t.tagName() == "widgets") {
             for(QDomNode n = t.firstChild(); !n.isNull(); n = n.nextSibling())
@@ -1006,7 +1006,7 @@ TagTemplates* TagTemplates::fromXml(const QDomElement& e)
                     if (aTW)
                         aTemplates->addWidget(aTW);
                     else
-                        return NULL;
+                        return nullptr;
                 }
             }
         }
@@ -1060,7 +1060,7 @@ TagTemplate* TagTemplates::match(const Feature* F, const MapView* V)
         if (items[i]->matchesTag(F,V) == TagSelect_DefaultMatch)
             return items[i];
     }
-    return NULL;
+    return nullptr;
 }
 
 bool TagTemplates::toXML(QDomDocument& doc)
@@ -1089,7 +1089,7 @@ TagTemplateWidget* TagTemplates::findWidget(const QString& id)
             return widgets[i];
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void TagTemplates::on_tag_changed(QString k, QString v)

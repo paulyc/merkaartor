@@ -12,7 +12,7 @@ class Feature;
 class AddFeatureCommand : public Command
 {
     public:
-        AddFeatureCommand(Feature* aFeature = NULL);
+        AddFeatureCommand(Feature* aFeature = nullptr);
         AddFeatureCommand(Layer* aDocument, Feature* aFeature, bool aUserAdded);
         virtual ~AddFeatureCommand();
 
@@ -33,7 +33,7 @@ class AddFeatureCommand : public Command
 class RemoveFeatureCommand : public Command
 {
     public:
-        RemoveFeatureCommand(Feature* aFeature = NULL);
+        RemoveFeatureCommand(Feature* aFeature = nullptr);
         RemoveFeatureCommand(Document* theDocument, Feature* aFeature);
         RemoveFeatureCommand(Document* theDocument, Feature* aFeature, const QList<Feature*>& Alternatives);
         virtual ~RemoveFeatureCommand();

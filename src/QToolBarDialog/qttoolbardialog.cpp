@@ -127,7 +127,7 @@ public:
     void addDefaultToolBar(QToolBar *toolBar, const QString &category);
 
     void removeDefaultToolBar(QToolBar *toolBar);
-    // NULL on action list means separator.
+    // nullptr on action list means separator.
     QMap<QToolBar *, QList<QAction *> > defaultToolBars() const;
     bool isDefaultToolBar(QToolBar *toolBar) const;
 
@@ -1552,7 +1552,7 @@ void QtToolBarDialogPrivate::currentActionChanged(QTreeWidgetItem *current)
     if (itemToAction.contains(current))
         currentAction = current;
     else
-        currentAction = NULL;
+        currentAction = nullptr;
     setButtons();
 }
 

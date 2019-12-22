@@ -275,13 +275,13 @@ TagSelector* parseFactor(const QString& Expression, int& idx)
         QString Key;
         if (canParseValue(Expression,idx,Key)) {
             int TmpIdx = 0;
-            Current = parseFactor("not(" + Key + " is _NULL_)", TmpIdx);
+            Current = parseFactor("not(" + Key + " is _nullptr_)", TmpIdx);
         }
     }
     if (!Current)
     {
         ++idx;
-        return NULL;
+        return nullptr;
     }
     return Current;
 }
@@ -374,7 +374,7 @@ TagSelectorOperator::TagSelectorOperator(const QString& key, const QString& oper
         specialKey = TagSelectKey_Uploaded;
 
     boolVal = false;
-    if (value.toUpper() == "_NULL_") {
+    if (value.toUpper() == "_nullptr_") {
         specialValue = TagSelectValue_Empty;
     } else if (value.toUpper() == "TRUE") {
         boolVal = true;
@@ -794,7 +794,7 @@ TagSelectorIsOneOf::TagSelectorIsOneOf(const QString& key, const QStringList& va
 
     for (int i=0; i<values.size(); ++i)
     {
-        if (values[i].toUpper() == "_NULL_") {
+        if (values[i].toUpper() == "_nullptr_") {
             specialValue = TagSelectValue_Empty;
         } else if (values[i].contains(QRegExp("[][*?]"))) {
             QRegExp rx(values[i], Qt::CaseInsensitive);
@@ -1033,7 +1033,7 @@ TagSelectorNot::~TagSelectorNot()
 TagSelector* TagSelectorNot::copy() const
 {
     if (!Term)
-        return NULL;
+        return nullptr;
     return new TagSelectorNot(Term->copy());
 }
 
@@ -1066,7 +1066,7 @@ TagSelectorParent::~TagSelectorParent()
 TagSelector* TagSelectorParent::copy() const
 {
     if (!Term)
-        return NULL;
+        return nullptr;
     return new TagSelectorParent(Term->copy());
 }
 

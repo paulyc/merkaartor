@@ -35,8 +35,8 @@ class SetTagCommand : public TagCommand
 {
     public:
         SetTagCommand(Feature* aF);
-        SetTagCommand(Feature* aF, int idx, const QString& k, const QString& v, Layer* aLayer=NULL);
-        SetTagCommand(Feature* aF, const QString& k, const QString& v, Layer* aLayer=NULL);
+        SetTagCommand(Feature* aF, int idx, const QString& k, const QString& v, Layer* aLayer=nullptr);
+        SetTagCommand(Feature* aF, const QString& k, const QString& v, Layer* aLayer=nullptr);
 
         virtual void undo();
         virtual void redo();
@@ -56,7 +56,7 @@ class SetTagCommand : public TagCommand
 class ClearTagsCommand : public TagCommand
 {
     public:
-        ClearTagsCommand(Feature* aF, Layer* aLayer=NULL);
+        ClearTagsCommand(Feature* aF, Layer* aLayer=nullptr);
 
         virtual void undo();
         virtual void redo();
@@ -69,7 +69,7 @@ class ClearTagCommand : public TagCommand
 {
     public:
         ClearTagCommand(Feature* aF);
-        ClearTagCommand(Feature* aF, const QString& k, Layer* aLayer=NULL);
+        ClearTagCommand(Feature* aF, const QString& k, Layer* aLayer=nullptr);
 
         virtual void undo();
         virtual void redo();

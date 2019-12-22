@@ -177,7 +177,7 @@ QString kmlId;
 
 Feature* parsePoint(QDomElement& e, Layer* aLayer)
 {
-    Node* P = NULL;
+    Node* P = nullptr;
 
     QDomElement c = e.firstChildElement();
     while(!c.isNull() && !P) {
@@ -202,7 +202,7 @@ Feature* parsePoint(QDomElement& e, Layer* aLayer)
 
 Feature* parseGeometry(QDomElement& e, Layer* aLayer)
 {
-    Feature* F = NULL;
+    Feature* F = nullptr;
     if (e.tagName() == "Point") {
         F = parsePoint(e, aLayer);
     }
@@ -212,7 +212,7 @@ Feature* parseGeometry(QDomElement& e, Layer* aLayer)
 
 bool parsePlacemark(QDomElement& e, Layer* aLayer)
 {
-    Feature* F = NULL;
+    Feature* F = nullptr;
     QDomElement c = e.firstChildElement();
     QString name;
     QString address;

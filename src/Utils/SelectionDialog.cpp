@@ -52,7 +52,7 @@ SelectionDialog::SelectionDialog(QWidget *parent, bool showMaxResult)
 
     cbValue->insertItems(-1, g_getTagValueList("*"));
     //special values
-    cbValue->insertItem(-1, "_NULL_");
+    cbValue->insertItem(-1, "_nullptr_");
 
     cbValue->setEditable(true);
 
@@ -74,7 +74,7 @@ void SelectionDialog::on_cbKey_editTextChanged(const QString & text)
     QStringList sl = g_getTagValueList(text);
     QCompleter* completer = new QCompleter(sl, (QObject *)this);
     cbValue->insertItems(-1, g_getTagValueList(text));
-    cbValue->insertItem(-1, "_NULL_");
+    cbValue->insertItem(-1, "_nullptr_");
     completer->setCompletionMode(QCompleter::InlineCompletion);
     completer->setModelSorting(QCompleter::CaseInsensitivelySortedModel);
     if (cbValue->completer())

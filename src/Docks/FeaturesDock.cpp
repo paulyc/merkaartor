@@ -49,7 +49,7 @@ FeaturesDock::FeaturesDock(MainWindow* aParent)
 
     connect(this, SIGNAL(visibilityChanged(bool)), this, SLOT(on_Viewport_changed()));
 
-    deleteAction = new QAction(NULL, this);
+    deleteAction = new QAction(nullptr, this);
 //    deleteAction->setShortcut(QKeySequence::Delete);
     ui.FeaturesList->addAction(deleteAction);
     connect(deleteAction, SIGNAL(triggered()), SLOT(on_FeaturesList_delete()));
@@ -65,23 +65,23 @@ FeaturesDock::FeaturesDock(MainWindow* aParent)
 
     connect(Main->properties(), SIGNAL(selectionChanged()), this, SLOT(updateList()));
 
-    centerAction = new QAction(NULL, this);
+    centerAction = new QAction(nullptr, this);
     connect(centerAction, SIGNAL(triggered()), this, SLOT(on_centerAction_triggered()));
-    centerZoomAction = new QAction(NULL, this);
+    centerZoomAction = new QAction(nullptr, this);
     connect(centerZoomAction, SIGNAL(triggered()), this, SLOT(on_centerZoomAction_triggered()));
-    downloadAction = new QAction(NULL, this);
+    downloadAction = new QAction(nullptr, this);
     connect(downloadAction, SIGNAL(triggered()), this, SLOT(on_downloadAction_triggered()));
-    addSelectAction = new QAction(NULL, this);
+    addSelectAction = new QAction(nullptr, this);
     connect(addSelectAction, SIGNAL(triggered()), this, SLOT(on_addSelectAction_triggered()));
 
     int t;
-    t = ui.tabBar->addTab(NULL);
+    t = ui.tabBar->addTab(nullptr);
     ui.tabBar->setTabData(t, IFeature::OsmRelation);
-    t = ui.tabBar->addTab(NULL);
+    t = ui.tabBar->addTab(nullptr);
     ui.tabBar->setTabData(t, IFeature::LineString);
-    t = ui.tabBar->addTab(NULL);
+    t = ui.tabBar->addTab(nullptr);
     ui.tabBar->setTabData(t, IFeature::Point);
-    t = ui.tabBar->addTab(NULL);
+    t = ui.tabBar->addTab(nullptr);
     ui.tabBar->setTabData(t, IFeature::All);
     ui.tabBar->setElideMode(Qt::ElideRight);
     ui.tabBar->setUsesScrollButtons(true);
@@ -329,7 +329,7 @@ void FeaturesDock::addItem(MapFeaturePtr F)
     if (ui.FeaturesList->count() > MAX_FEATS)
         return;
 
-    QListWidgetItem* newItem = NULL;
+    QListWidgetItem* newItem = nullptr;
 
     if (curFeatType == IFeature::OsmRelation || curFeatType == Feature::All)
     {

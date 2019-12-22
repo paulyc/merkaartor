@@ -6,7 +6,7 @@ class LayerPrivate
 public:
     LayerPrivate()
     {
-        theDocument = NULL;
+        theDocument = nullptr;
         selected = false;
         Enabled = true;
         Readonly = false;

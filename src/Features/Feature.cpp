@@ -108,7 +108,7 @@ public:
         : Tags(other.Tags), LastActor(other.LastActor)
         , PossiblePaintersUpToDate(false)
         , PixelPerMForPainter(-1), CurrentPainter(0), HasPainter(false)
-        , theFeature(NULL), LastPartNotification(0)
+        , theFeature(nullptr), LastPartNotification(0)
         , Deleted(false), Visible(true), Uploaded(false), FilterRevision(-1)
         , Virtual(other.Virtual), Special(other.Special), DirtyLevel(0)
         , parentLayer(0)
@@ -578,7 +578,7 @@ void FeaturePrivate::updatePossiblePainters()
     for (int i=0; i<theFeature->layer()->getDocument()->getPaintersSize(); ++i)
     {
         const FeaturePainter* Current = dynamic_cast<const FeaturePainter*>(theFeature->layer()->getDocument()->getPainter(i));
-        switch (Current->matchesTag(theFeature,NULL)) {
+        switch (Current->matchesTag(theFeature,nullptr)) {
         case TagSelect_Match:
             PossiblePainters.push_back(Current);
             break;
@@ -601,7 +601,7 @@ void FeaturePrivate::updatePainters(qreal PixelPerM)
         updatePossiblePainters();
 
     QMutexLocker mutlock(&theFeature->featMutex);
-    CurrentPainter = NULL;
+    CurrentPainter = nullptr;
     PixelPerMForPainter = PixelPerM;
     for (int i=0; i<PossiblePainters.size(); ++i)
         if (PossiblePainters[i]->matchesZoom(PixelPerM))
@@ -613,7 +613,7 @@ void FeaturePrivate::updatePainters(qreal PixelPerM)
 
 void FeaturePrivate::blankPainters()
 {
-    CurrentPainter = NULL;
+    CurrentPainter = nullptr;
     PossiblePainters.clear();
     PossiblePaintersUpToDate = true;
     HasPainter = false;
@@ -633,7 +633,7 @@ const FeaturePainter* Feature::getCurrentPainter() const
     else {
         if (p->PossiblePainters.size())
             return p->PossiblePainters[0];
-        else return NULL;
+        else return nullptr;
     }
 }
 
@@ -651,7 +651,7 @@ bool Feature::hasPainter(qreal PixelPerM) const
         return false;
     if (p->PixelPerMForPainter != PixelPerM)
         p->updatePainters(PixelPerM);
-    return (p->CurrentPainter != NULL);
+    return (p->CurrentPainter != nullptr);
 }
 
 void Feature::setParentFeature(Feature* F)
@@ -934,9 +934,9 @@ Relation * Feature::GetSingleParentRelation(Feature * mapFeature)
     int parents = mapFeature->sizeParents();
 
     if (parents == 0)
-        return NULL;
+        return nullptr;
 
-    Relation * parentRelation = NULL;
+    Relation * parentRelation = nullptr;
 
     int i;
     for (i=0; i<parents; i++)
@@ -945,7 +945,7 @@ Relation * Feature::GetSingleParentRelation(Feature * mapFeature)
         if (!rel || rel->isDeleted()) continue;
 
         if (parentRelation)
-            return NULL;
+            return nullptr;
 
         if (rel->layer()->isEnabled())
             parentRelation = rel;

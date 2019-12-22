@@ -2516,7 +2516,7 @@
 
  </widgets>
   <template>
-    <selector expr="not [addr:housenumber] is _NULL_ and Type is Node" />
+    <selector expr="not [addr:housenumber] is _nullptr_ and Type is Node" />
     <link src="http://wiki.openstreetmap.org/wiki/Key:addr" />
     <description locale="en" >House number (Karlsruhe Schema)</description>
     <description locale="cs" >Číslo domu (Karlsruhe Schéma)</description>
@@ -2539,7 +2539,7 @@
     <widgetref id="housenumber" />
   </template>
   <template>
-    <selector expr="not [addr:interpolation] is _NULL_ and Type is Way" />
+    <selector expr="not [addr:interpolation] is _nullptr_ and Type is Way" />
     <link src="http://wiki.openstreetmap.org/wiki/Key:addr" />
     <description locale="en" >House number scheme (Karlsruhe)</description>
     <description locale="cs" >Schéma číslování domu (Karlsruhe)</description>
@@ -2886,7 +2886,7 @@
    <description locale="sl" >Ime</description>
    <description locale="sv" >Namn</description>
    <description locale="uk" >Назва</description>
-   <selector expr="not [place] is _NULL_" />
+   <selector expr="not [place] is _nullptr_" />
   </widget>
   <widgetref id="amenity" />
   <widgetref id="place" />

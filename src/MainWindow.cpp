@@ -220,9 +220,9 @@ MainWindow::MainWindow(QWidget *parent)
     p->FILTER_IMPORT_SUPPORTED += supported_import_formats_desc;
     p->FILTER_IMPORT_SUPPORTED += tr("All Files (*)");
 
-    theProgressDialog = NULL;
-    theProgressBar = NULL;
-    theProgressLabel = NULL;
+    theProgressDialog = nullptr;
+    theProgressBar = nullptr;
+    theProgressLabel = nullptr;
 
     if (M_PREFS->getMerkaartorStyle())
         QApplication::setStyle(QStyleFactory::create(M_PREFS->getMerkaartorStyleString()));
@@ -515,13 +515,13 @@ void MainWindow::handleMessage(const QString &msg)
     }
 
     if (fileNames.size() > 0) {
-        importFiles(theDocument, fileNames, NULL);
+        importFiles(theDocument, fileNames, nullptr);
     }
 }
 
 MainWindow::~MainWindow(void)
 {
-    p->theProperties->setSelection(NULL);
+    p->theProperties->setSelection(nullptr);
 
     delete M_STYLE;
     delete theDocument;
@@ -555,15 +555,15 @@ void MainWindow::launchInteraction(Interaction* anInteraction)
         delete theView->interaction();
     theView->setInteraction(anInteraction);
     if (anInteraction) {
-        ui->editPropertiesAction->setChecked(dynamic_cast<EditInteraction*>(anInteraction) != NULL);
-        ui->editMoveAction->setChecked(dynamic_cast<MoveNodeInteraction*>(anInteraction) != NULL);
-        ui->editRotateAction->setChecked(dynamic_cast<RotateInteraction*>(anInteraction) != NULL);
-        ui->editScaleAction->setChecked(dynamic_cast<ScaleInteraction*>(anInteraction) != NULL);
-        ui->createNodeAction->setChecked(dynamic_cast<CreateNodeInteraction*>(anInteraction) != NULL);
-        ui->createRoadAction->setChecked(dynamic_cast<CreateSingleWayInteraction*>(anInteraction) != NULL);
-        ui->createAreaAction->setChecked(dynamic_cast<CreateAreaInteraction*>(anInteraction) != NULL);
-        ui->roadExtrudeAction->setChecked(dynamic_cast<ExtrudeInteraction*>(anInteraction) != NULL);
-        ui->markBridgeAction->setChecked(dynamic_cast<BuildBridgeInteraction*>(anInteraction) != NULL);
+        ui->editPropertiesAction->setChecked(dynamic_cast<EditInteraction*>(anInteraction) != nullptr);
+        ui->editMoveAction->setChecked(dynamic_cast<MoveNodeInteraction*>(anInteraction) != nullptr);
+        ui->editRotateAction->setChecked(dynamic_cast<RotateInteraction*>(anInteraction) != nullptr);
+        ui->editScaleAction->setChecked(dynamic_cast<ScaleInteraction*>(anInteraction) != nullptr);
+        ui->createNodeAction->setChecked(dynamic_cast<CreateNodeInteraction*>(anInteraction) != nullptr);
+        ui->createRoadAction->setChecked(dynamic_cast<CreateSingleWayInteraction*>(anInteraction) != nullptr);
+        ui->createAreaAction->setChecked(dynamic_cast<CreateAreaInteraction*>(anInteraction) != nullptr);
+        ui->roadExtrudeAction->setChecked(dynamic_cast<ExtrudeInteraction*>(anInteraction) != nullptr);
+        ui->markBridgeAction->setChecked(dynamic_cast<BuildBridgeInteraction*>(anInteraction) != nullptr);
 
         EditInteraction* EI = dynamic_cast<EditInteraction*>(anInteraction);
         if (EI)
@@ -694,7 +694,7 @@ bool MainWindow::eventFilter(QObject */* watched */, QEvent *event)
         QDragEnterEvent* devent = static_cast<QDragEnterEvent*>(event);
 
         if (devent->mimeData()->hasUrls() && devent->mimeData()->urls().first().toLocalFile().endsWith(".jpg", Qt::CaseInsensitive)) {
-            p->dropTarget = NULL;
+            p->dropTarget = nullptr;
             event->accept();
             return true;
         } else
@@ -786,7 +786,7 @@ bool MainWindow::eventFilter(QObject */* watched */, QEvent *event)
         theView->interaction()->mouseEvent(mevent);
 
         if (M_PREFS->getSelectModeCreation()) {
-            MoveNodeInteraction* MI = NULL;
+            MoveNodeInteraction* MI = nullptr;
             if (!M_PREFS->getSeparateMoveMode()) {
                 MI = dynamic_cast<MoveNodeInteraction*>(theView->interaction());
             }
@@ -1141,8 +1141,8 @@ void MainWindow::createProgressDialog()
 void MainWindow::deleteProgressDialog()
 {
     SAFE_DELETE(theProgressDialog)
-    theProgressBar = NULL;
-    theProgressLabel = NULL;
+    theProgressBar = nullptr;
+    theProgressLabel = nullptr;
 }
 
 void MainWindow::setAreaOpacity(QAction *act)
@@ -1156,7 +1156,7 @@ void MainWindow::setAreaOpacity(QAction *act)
 void MainWindow::adjustLayers(bool adjustViewport)
 {
     if (M_PREFS->getZoomBoris()) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;
@@ -1637,7 +1637,7 @@ MainWindow::ImportStatus MainWindow::importFile(Document * mapDocument, const QS
                 mapDocument->remove(theTracklayers[i]);
                 SAFE_DELETE(theTracklayers[i]);
             }
-            newLayer = NULL;
+            newLayer = nullptr;
         } else {
             if (!newLayer->size()) {
                 mapDocument->remove(newLayer);
@@ -1788,7 +1788,7 @@ bool MainWindow::importFiles(Document * mapDocument, const QStringList & fileNam
     {
         const QString & fn = it.next();
 
-        Layer* newLayer = NULL;
+        Layer* newLayer = nullptr;
         // TODO: The passing mechanism of newLayer is evil black magic.
         ImportStatus fileImportResult;
         if (useGdal)
@@ -1859,7 +1859,7 @@ void MainWindow::loadUrl(const QUrl& theUrl)
         if (!F) {
             /* The feature is missing, download it first. */
             createProgressDialog();
-            downloadFeature(this, mId, theDocument, NULL);
+            downloadFeature(this, mId, theDocument, nullptr);
             deleteProgressDialog();
             F = theDocument->getFeature(mId);
         }
@@ -2033,7 +2033,7 @@ void MainWindow::on_fileDownloadMoreAction_triggered()
 
 void MainWindow::on_layersMapdustAction_triggered()
 {
-    SpecialLayer* sl = NULL;
+    SpecialLayer* sl = nullptr;
     for (int i=0; i<theDocument->layerSize(); ++i) {
         if (theDocument->getLayer(i)->classType() == Layer::MapDustLayer) {
             sl = dynamic_cast<SpecialLayer*>(theDocument->getLayer(i));
@@ -2147,7 +2147,7 @@ void MainWindow::on_viewLockZoomAction_triggered()
     M_PREFS->setZoomBoris(!M_PREFS->getZoomBoris());
     SetOptionValue(p->renderOptions, RendererOptions::LockZoom, M_PREFS->getZoomBoris());
     ui->viewLockZoomAction->setChecked(M_PREFS->getZoomBoris());
-    ImageMapLayer* l = NULL;
+    ImageMapLayer* l = nullptr;
     for (LayerIterator<ImageMapLayer*> ImgIt(theDocument); !ImgIt.isEnd(); ++ImgIt) {
         l = ImgIt.get();
         break;
@@ -2315,7 +2315,7 @@ void MainWindow::on_fileNewAction_triggered()
     if (!theDocument || !hasUnsavedChanges() || mayDiscardUnsavedChanges(this)) {
         p->theFeats->invalidate();
         SAFE_DELETE(theDocument);
-        theView->setDocument(NULL);
+        theView->setDocument(nullptr);
         p->latSaveDirtyLevel = 0;
         g_feat_rndId = 0;
 
@@ -2373,7 +2373,7 @@ void MainWindow::on_createRoundaboutAction_triggered()
 namespace {
 
 // TODO: Move Qt4/Qt5 wrappers to a separate file.
-int getInteger(QWidget* parent, const QString& title, const QString& label, int value = 0, int minimum = INT_MIN, int maximum = INT_MAX, int step = 1, bool* ok = NULL) {
+int getInteger(QWidget* parent, const QString& title, const QString& label, int value = 0, int minimum = INT_MIN, int maximum = INT_MAX, int step = 1, bool* ok = nullptr) {
 #ifdef QT5
     return QInputDialog::getInt(parent, title, label, value, minimum, maximum, step, ok);
 #else
@@ -2402,7 +2402,7 @@ void MainWindow::on_createRectangleAction_triggered()
 
 void MainWindow::on_createRoadAction_triggered()
 {
-    Node * firstPoint = NULL;
+    Node * firstPoint = nullptr;
 
     if (p->theProperties->selectionSize() == 1)
     {
@@ -2416,7 +2416,7 @@ void MainWindow::on_createRoadAction_triggered()
 
 void MainWindow::on_createCurvedRoadAction_triggered()
 {
-    launchInteraction(new CreateSingleWayInteraction(this, NULL, true));
+    launchInteraction(new CreateSingleWayInteraction(this, nullptr, true));
     theInfo->setHtml(theView->interaction()->toHtml());
 }
 
@@ -2440,7 +2440,7 @@ void MainWindow::on_markBridgeAction_triggered()
 
 void MainWindow::on_roadJoinAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Join Ways"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Join Ways"), nullptr);
     joinRoads(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2454,7 +2454,7 @@ void MainWindow::on_roadJoinAction_triggered()
 
 void MainWindow::on_roadSplitAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Split Ways"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Split Ways"), nullptr);
     splitRoads(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2468,7 +2468,7 @@ void MainWindow::on_roadSplitAction_triggered()
 
 void MainWindow::on_roadBreakAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Break Ways"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Break Ways"), nullptr);
     breakRoads(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2482,7 +2482,7 @@ void MainWindow::on_roadBreakAction_triggered()
 
 void MainWindow::on_roadSimplifyAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Simplify Ways"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Simplify Ways"), nullptr);
     qreal threshold = 3.0; // in metres; TODO: allow user-specified threshold
     simplifyRoads(theDocument, theList, p->theProperties, threshold);
     if (theList->empty())
@@ -2555,7 +2555,7 @@ void MainWindow::on_featureDeleteAction_triggered()
 
 void MainWindow::on_featureCommitAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Force Feature upload"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Force Feature upload"), nullptr);
     commitFeatures(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2568,7 +2568,7 @@ void MainWindow::on_featureCommitAction_triggered()
 
 void MainWindow::on_roadCreateJunctionAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Create Junction"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Create Junction"), nullptr);
     int n = createJunction(theDocument, theList, p->theProperties, false);
     if (n > 1) {
         MDiscardableMessage dlg(view(),
@@ -2590,7 +2590,7 @@ void MainWindow::on_roadCreateJunctionAction_triggered()
 
 void MainWindow::on_roadAddStreetNumbersAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Add Street Numbers"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Add Street Numbers"), nullptr);
 
     addStreetNumbers(theDocument, theList, p->theProperties);
 
@@ -2616,7 +2616,7 @@ void MainWindow::on_roadSubdivideAction_triggered()
     if (Dlg->exec() == QDialog::Accepted) {
         int divisions = Dlg->intValue();
 #endif
-        CommandList* theList = new CommandList(MainWindow::tr("Subdivide way into %1").arg(divisions), NULL);
+        CommandList* theList = new CommandList(MainWindow::tr("Subdivide way into %1").arg(divisions), nullptr);
         subdivideRoad(theDocument, theList, p->theProperties, divisions);
         if (theList->empty())
             delete theList;
@@ -2661,7 +2661,7 @@ void MainWindow::on_roadAxisAlignAction_triggered()
         command_name = tr("Align onto %1 regular axes").arg(axes);
 
     // Do the manipulation
-    CommandList* theList = new CommandList(command_name, NULL);
+    CommandList* theList = new CommandList(command_name, nullptr);
     AxisAlignResult result = axisAlignRoads(theDocument, theList, p->theProperties, view()->projection(), axes);
     if (result != AxisAlignSuccess || theList->empty()) {
         if (result == AxisAlignSharpAngles)
@@ -2685,7 +2685,7 @@ void MainWindow::on_roadExtrudeAction_triggered()
 
 void MainWindow::on_roadBingExtractAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Bing Extract"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Bing Extract"), nullptr);
     bingExtract(theDocument, theList, p->theProperties, theView->viewport());
     if (theList->empty())
         delete theList;
@@ -2700,7 +2700,7 @@ void MainWindow::on_roadBingExtractAction_triggered()
 void MainWindow::on_nodeAlignAction_triggered()
 {
     //MapFeature* F = theView->properties()->selection(0);
-    CommandList* theList = new CommandList(MainWindow::tr("Align Nodes"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Align Nodes"), nullptr);
     alignNodes(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2714,7 +2714,7 @@ void MainWindow::on_nodeAlignAction_triggered()
 
 void MainWindow::on_nodeSpreadAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Spread Nodes"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Spread Nodes"), nullptr);
     spreadNodes(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2757,7 +2757,7 @@ void MainWindow::on_nodeDetachAction_triggered()
 
 void MainWindow::on_relationAddMemberAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Add member to relation"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Add member to relation"), nullptr);
     addRelationMember(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2769,7 +2769,7 @@ void MainWindow::on_relationAddMemberAction_triggered()
 
 void MainWindow::on_relationRemoveMemberAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Remove member from relation"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Remove member from relation"), nullptr);
     removeRelationMember(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2781,7 +2781,7 @@ void MainWindow::on_relationRemoveMemberAction_triggered()
 
 void MainWindow::on_relationAddToMultipolygonAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Add to Multipolygon"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Add to Multipolygon"), nullptr);
     addToMultipolygon(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2793,7 +2793,7 @@ void MainWindow::on_relationAddToMultipolygonAction_triggered()
 
 void MainWindow::on_areaJoinAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Join areas"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Join areas"), nullptr);
     joinAreas(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2805,7 +2805,7 @@ void MainWindow::on_areaJoinAction_triggered()
 
 void MainWindow::on_areaSplitAction_triggered()
 {
-    CommandList* theList = new CommandList(MainWindow::tr("Split area"), NULL);
+    CommandList* theList = new CommandList(MainWindow::tr("Split area"), nullptr);
     splitArea(theDocument, theList, p->theProperties);
     if (theList->empty())
         delete theList;
@@ -2820,7 +2820,7 @@ void MainWindow::on_areaTerraceAction_triggered()
     TerraceDialog* Dlg = new TerraceDialog(this);
     if (Dlg->exec() == QDialog::Accepted) {
         int divisions = Dlg->numHouses();
-        CommandList* theList = new CommandList(MainWindow::tr("Terrace area into %1").arg(divisions), NULL);
+        CommandList* theList = new CommandList(MainWindow::tr("Terrace area into %1").arg(divisions), nullptr);
         terraceArea(theDocument, theList, p->theProperties, divisions);
         // Add the house numbers to the houses in the selection
         if (Dlg->hasHouseNumbers()) {
@@ -3075,7 +3075,7 @@ void MainWindow::preferencesChanged(PreferencesDialog* prefs)
     }
     ui->mnuProjections->menuAction()->setEnabled(true);
     if (M_PREFS->getZoomBoris()) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;
@@ -3206,13 +3206,13 @@ Document* MainWindow::doLoadDocument(QFile* file)
         ;
     if (stream.tokenType() != QXmlStreamReader::StartElement || stream.name() != "MerkaartorDocument") {
         QMessageBox::critical(this, tr("Invalid file"), tr("%1 is not a valid Merkaartor document.").arg(file->fileName()));
-        return NULL;
+        return nullptr;
     }
     double version = stream.attributes().value("version").toString().toDouble();
 
     progress.setMaximum(file->size());
 
-    Document* newDoc = NULL;
+    Document* newDoc = nullptr;
 
     if (version < 2.) {
         stream.readNext();
@@ -3289,7 +3289,7 @@ void MainWindow::loadDocument(QString fn)
 
 void MainWindow::loadTemplateDocument(QString fn)
 {
-    Document* newDoc = NULL;
+    Document* newDoc = nullptr;
     QFile file(fn);
     if (file.open(QIODevice::ReadOnly)) {
         newDoc = doLoadDocument(&file);
@@ -3658,7 +3658,7 @@ void MainWindow::updateProjectionMenu()
 #endif
     ui->mnuProjections->menuAction()->setEnabled(true);
     if (M_PREFS->getZoomBoris() && theDocument) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;

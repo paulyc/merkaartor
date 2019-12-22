@@ -12,7 +12,7 @@ class MoveNodeCommand : public Command
     public:
         MoveNodeCommand();
         MoveNodeCommand(Node* aPt);
-        MoveNodeCommand(Node* aPt, const Coord& aPos, Layer* aLayer=NULL);
+        MoveNodeCommand(Node* aPt, const Coord& aPos, Layer* aLayer=nullptr);
         virtual ~MoveNodeCommand();
 
         void undo();

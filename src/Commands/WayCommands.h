@@ -10,9 +10,9 @@ class Layer;
 class WayAddNodeCommand : public Command
 {
     public:
-        WayAddNodeCommand(Way* R = NULL);
-        WayAddNodeCommand(Way* R, Node* W, Layer* aLayer=NULL);
-        WayAddNodeCommand(Way* R, Node* W, int Position, Layer* aLayer=NULL);
+        WayAddNodeCommand(Way* R = nullptr);
+        WayAddNodeCommand(Way* R, Node* W, Layer* aLayer=nullptr);
+        WayAddNodeCommand(Way* R, Node* W, int Position, Layer* aLayer=nullptr);
         ~WayAddNodeCommand(void);
 
         virtual void undo();
@@ -33,9 +33,9 @@ class WayAddNodeCommand : public Command
 class WayRemoveNodeCommand : public Command
 {
     public:
-        WayRemoveNodeCommand(Way* R = NULL);
-        WayRemoveNodeCommand(Way* R, Node* W, Layer* aLayer=NULL);
-        WayRemoveNodeCommand(Way* R, int anIdx, Layer* aLayer=NULL);
+        WayRemoveNodeCommand(Way* R = nullptr);
+        WayRemoveNodeCommand(Way* R, Node* W, Layer* aLayer=nullptr);
+        WayRemoveNodeCommand(Way* R, int anIdx, Layer* aLayer=nullptr);
         ~WayRemoveNodeCommand(void);
 
         virtual void undo();

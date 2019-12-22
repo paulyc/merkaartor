@@ -117,7 +117,7 @@ class IPaintStyle;
         void set##Param(const QColor& theValue); \
         QColor get##Param();
 
-#define SAFE_DELETE(x) {delete (x); x = NULL;}
+#define SAFE_DELETE(x) {delete (x); x = nullptr;}
 #define STRINGIFY(x) XSTRINGIFY(x)
 #define XSTRINGIFY(x) #x
 

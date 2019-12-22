@@ -30,7 +30,7 @@ CreateSingleWayInteraction::CreateSingleWayInteraction(MainWindow* aMain, Node *
             if (theRoad->isExtrimity(firstNode)) {
                 Prepend = (theRoad->get(0) == firstNode) ? true : false;
             } else
-                theRoad = NULL;
+                theRoad = nullptr;
 
         }
     }
@@ -72,7 +72,7 @@ void CreateSingleWayInteraction::paintEvent(QPaintEvent* anEvent, QPainter& theP
 {
     if (theRoad && (!theRoad->layer() || theRoad->isDeleted())) { // The road was begon and then undoed. Restarting....
         HaveFirst = false;
-        theRoad = NULL;
+        theRoad = nullptr;
         Creating = false;
         view()->setInteracting(false);
     }
@@ -221,7 +221,7 @@ void CreateSingleWayInteraction::snapMouseReleaseEvent(QMouseEvent* anEvent, Fea
 {
     if (M_PREFS->getMouseSingleButton() && anEvent->button() == Qt::RightButton) {  // Abort
         HaveFirst = false;
-        theRoad = NULL;
+        theRoad = nullptr;
         Creating = false;
         view()->setInteracting(false);
     } else
@@ -330,7 +330,7 @@ void CreateSingleWayInteraction::snapMouseReleaseEvent(QMouseEvent* anEvent, Fea
 void CreateSingleWayInteraction::snapMouseDoubleClickEvent(QMouseEvent* anEvent, Feature*)
 {
     HaveFirst = false;
-    theRoad = NULL;
+    theRoad = nullptr;
     Creating = false;
     view()->setInteracting(false);
 
@@ -358,7 +358,7 @@ void CreateSingleWayInteraction::closeAndFinish()
     theMain->properties()->setSelection(theRoad);
 
     HaveFirst = false;
-    theRoad = NULL;
+    theRoad = nullptr;
     Creating = false;
     view()->setInteracting(false);
 }

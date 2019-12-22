@@ -306,9 +306,9 @@ bool DirtyListExecutorOSC::stop()
 
     URL = theDownloader->getURLToCloseChangeSet(ChangeSetId);
     QUrl theUrl(Web+URL);
-    theDownloader->setAnimator(NULL, NULL, NULL, false);
+    theDownloader->setAnimator(nullptr, nullptr, nullptr, false);
     if (!theDownloader->request("PUT",theUrl,DataIn)) {
-        QMessageBox::warning(NULL, tr("Changeset could not be closed."), tr("An unknown error has occurred. It might already be closed, or will be closed automatically. If you want to be sure, please, check manually on the osm.org website."));
+        QMessageBox::warning(nullptr, tr("Changeset could not be closed."), tr("An unknown error has occurred. It might already be closed, or will be closed automatically. If you want to be sure, please, check manually on the osm.org website."));
     }
 
     return true;

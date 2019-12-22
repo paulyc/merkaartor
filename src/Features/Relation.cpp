@@ -446,7 +446,7 @@ void Relation::buildPath(Projection const &theProjection)
     if (!p->PathUpToDate || p->ProjectionRevision != theProjection.projectionRevision()) {
         p->thePath = QPainterPath();
 
-        Way* outerWay = NULL;
+        Way* outerWay = nullptr;
         int numOuter = 0;
         bool isMultipolygon = false;
         if (tagValue("type", "") == "multipolygon")
@@ -465,7 +465,7 @@ void Relation::buildPath(Projection const &theProjection)
                         if (!numOuter)
                             outerWay = M;
                         else
-                            outerWay = NULL;
+                            outerWay = nullptr;
                         ++numOuter;
                     }
                 }

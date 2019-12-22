@@ -44,7 +44,7 @@ void AddFeatureCommand::redo()
             theLayer->add(theFeature);
         else {
             theFeature->setDeleted(false);
-            oldLayer = NULL;
+            oldLayer = nullptr;
         }
         incDirtyLevel(theLayer, theFeature);
     }
@@ -90,13 +90,13 @@ AddFeatureCommand * AddFeatureCommand::fromXML(Document* d, QXmlStreamReader& st
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     Feature* F;
     if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-        return NULL;
+        return nullptr;
 
     a->theFeature = F;
     a->UserAdded = (stream.attributes().value("useradded") == "true" ? true : false);
@@ -129,7 +129,7 @@ RemoveFeatureCommand::RemoveFeatureCommand(Document *theDocument, Feature *aFeat
 RemoveFeatureCommand::RemoveFeatureCommand(Document *theDocument, Feature *aFeature, const QList<Feature*>& Alternatives)
 : Command(aFeature), theLayer(0), theFeature(aFeature), CascadedCleanUp(0), RemoveExecuted(false), theAlternatives(Alternatives)
 {
-    CascadedCleanUp  = new CommandList(QApplication::tr("Cascaded cleanup"), NULL);
+    CascadedCleanUp  = new CommandList(QApplication::tr("Cascaded cleanup"), nullptr);
     while (aFeature->sizeParents()) {
         Feature* f = CAST_FEATURE(aFeature->getParent(0));
         if (f)
@@ -257,11 +257,11 @@ RemoveFeatureCommand * RemoveFeatureCommand::fromXML(Document* d, QXmlStreamRead
     else
         a->theLayer = d->getDirtyOrOriginLayer();
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     Feature* F;
     if (!(F = d->getFeature(IFeature::FId(IFeature::All, stream.attributes().value("feature").toString().toLongLong()))))
-        return NULL;
+        return nullptr;
     a->theFeature = F;
 
     stream.readNext();

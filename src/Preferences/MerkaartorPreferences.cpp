@@ -372,7 +372,7 @@ void MerkaartorPreferences::fromOsmPref()
 }
 
 void MerkaartorPreferences::on_authenticationRequired( QNetworkReply *reply, QAuthenticator *auth ) {
-    static QNetworkReply *lastReply = NULL;
+    static QNetworkReply *lastReply = nullptr;
 
     /* Only provide authentication the first time we see this reply, to avoid
      * infinite loop providing the same credentials. */
@@ -405,13 +405,13 @@ void MerkaartorPreferences::on_requestFinished ( QNetworkReply *reply )
                 saveOnline = false;
                 break;
             case 406:
-                QMessageBox::critical(NULL,QApplication::translate("MerkaartorPreferences","Preferences upload failed"), QApplication::translate("MerkaartorPreferences","Duplicate key"));
+                QMessageBox::critical(nullptr,QApplication::translate("MerkaartorPreferences","Preferences upload failed"), QApplication::translate("MerkaartorPreferences","Duplicate key"));
                 return;
             case 413:
-                QMessageBox::critical(NULL,QApplication::translate("MerkaartorPreferences","Preferences upload failed"), QApplication::translate("MerkaartorPreferences","More than 150 preferences"));
+                QMessageBox::critical(nullptr,QApplication::translate("MerkaartorPreferences","Preferences upload failed"), QApplication::translate("MerkaartorPreferences","More than 150 preferences"));
                 return;
             default:
-                QMessageBox::critical(NULL,QApplication::translate("MerkaartorPreferences","Preferences communication failed"), QApplication::translate("MerkaartorPreferences", "Communication error")+":\n"+reply->errorString());
+                QMessageBox::critical(nullptr,QApplication::translate("MerkaartorPreferences","Preferences communication failed"), QApplication::translate("MerkaartorPreferences", "Communication error")+":\n"+reply->errorString());
                 return;
         }
     }
@@ -721,7 +721,7 @@ IMapAdapterFactory* MerkaartorPreferences::getBackgroundPlugin(const QUuid& anAd
     if (mBackgroundPlugins.contains(anAdapterUid))
         return mBackgroundPlugins[anAdapterUid];
     else
-        return NULL;
+        return nullptr;
 }
 
 void MerkaartorPreferences::setBackgroundPlugin(const QUuid & theValue)

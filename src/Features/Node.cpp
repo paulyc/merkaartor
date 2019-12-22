@@ -84,12 +84,12 @@ int Node::find(Feature* ) const
 
 Feature* Node::get(int )
 {
-    return NULL;
+    return nullptr;
 }
 
 const Feature* Node::get(int ) const
 {
-    return NULL;
+    return nullptr;
 }
 
 bool Node::isNull() const

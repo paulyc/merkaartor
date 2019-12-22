@@ -82,13 +82,13 @@ TrackSegmentAddNodeCommand * TrackSegmentAddNodeCommand::fromXML(Document * d, Q
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->theTrackSegment = dynamic_cast<TrackSegment*>(d->getFeature(IFeature::FId(IFeature::GpxSegment, stream.attributes().value("tracksegment").toString().toLongLong())));
     a->theNode = Feature::getTrackNodeOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::Point, stream.attributes().value("trackpoint").toString().toLongLong()));
@@ -176,13 +176,13 @@ TrackSegmentRemoveNodeCommand * TrackSegmentRemoveNodeCommand::fromXML(Document 
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->theTrackSegment = dynamic_cast<TrackSegment*>(d->getFeature(IFeature::FId(IFeature::GpxSegment, stream.attributes().value("tracksegment").toString().toLongLong())));
     a->theTrackPoint = Feature::getTrackNodeOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::Point, stream.attributes().value("trackpoint").toString().toLongLong()));

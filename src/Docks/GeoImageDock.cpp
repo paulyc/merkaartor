@@ -25,6 +25,9 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
+#include <algorithm>
+#include <memory>
+
 #include "ui_PhotoLoadErrorDialog.h"
 
 #define WARNING(title, message) { \
@@ -335,7 +338,7 @@ void GeoImageDock::loadImage(QString file, Coord pos)
     //MapView *theView = Main->view();
 
     Layer *theLayer;
-    if (photoLayer == NULL) {
+    if (photoLayer == nullptr) {
         photoLayer = new TrackLayer(tr("Photo layer"));
         photoLayer->setReadonly(false);
         theDocument->add(photoLayer);
@@ -346,8 +349,8 @@ void GeoImageDock::loadImage(QString file, Coord pos)
         QList<int> layerId;
         int i;
         Layer *layer;
-        Layer *singleLayer = NULL;
-        Layer *singleTrackLayer = NULL;
+        Layer *singleLayer = nullptr;
+        Layer *singleTrackLayer = nullptr;
         int trackLayersCount = 0;
         for (i=0;i<theDocument->layerSize();i++) {
             layer = theDocument->getLayer(i);
@@ -380,7 +383,7 @@ void GeoImageDock::loadImage(QString file, Coord pos)
         else
         {
             bool ok;
-            QString name = QInputDialog::getItem(NULL, tr("Load geotagged Images"),
+            QString name = QInputDialog::getItem(nullptr, tr("Load geotagged Images"),
              tr("Select the layer to which the images belong:"), layers, 0, false, &ok);
             if (ok && !name.isEmpty())
                 theLayer = theDocument->getLayer(layerId.at(layers.indexOf(name)));
@@ -389,7 +392,7 @@ void GeoImageDock::loadImage(QString file, Coord pos)
         }
         if (theLayer != photoLayer && !photoLayer->size()) {
             theDocument->remove(photoLayer);
-            SAFE_DELETE(photoLayer);
+            SAFE_DELETE(photoLayer)
         }
     }
 
@@ -402,14 +405,14 @@ void GeoImageDock::loadImage(QString file, Coord pos)
             return;
     }
 
-    Node *Pt = 0;
+    Node *Pt = nullptr;
     int i = 0;
     for (; i<theLayer->size(); ++i) // use existing TrackPoint if there is one in small distance
         if ((Pt = CAST_NODE(theLayer->get(i))) &&
          Pt->position().distanceFrom(pos) <= .002)
             break;
         else
-            Pt = 0;
+            Pt = nullptr;
 
     PhotoNode* phNode;
     if (!Pt) {
@@ -461,7 +464,7 @@ void GeoImageDock::loadImages(QStringList fileNames)
     bool positionValid = false;
 
     Layer *theLayer;
-    if (photoLayer == NULL) {
+    if (photoLayer == nullptr) {
         photoLayer = new TrackLayer(tr("Photo layer"));
         photoLayer->setReadonly(false);
         theDocument->add(photoLayer);
@@ -472,8 +475,8 @@ void GeoImageDock::loadImages(QStringList fileNames)
         QList<int> layerId;
         int i;
         Layer *layer;
-        Layer *singleLayer = NULL;
-        Layer *singleTrackLayer = NULL;
+        Layer *singleLayer = nullptr;
+        Layer *singleTrackLayer = nullptr;
         int trackLayersCount = 0;
         for (i=0;i<theDocument->layerSize();i++) {
             layer = theDocument->getLayer(i);
@@ -506,7 +509,7 @@ void GeoImageDock::loadImages(QStringList fileNames)
         else
         {
             bool ok;
-            QString name = QInputDialog::getItem(NULL, tr("Load geotagged Images"),
+            QString name = QInputDialog::getItem(nullptr, tr("Load geotagged Images"),
              tr("Select the layer to which the images belong:"), layers, 0, false, &ok);
             if (ok && !name.isEmpty())
                 theLayer = theDocument->getLayer(layerId.at(layers.indexOf(name)));
@@ -540,7 +543,7 @@ void GeoImageDock::loadImages(QStringList fileNames)
         double lat = 0.0, lon = 0.0;
 
         if (!QFile::exists(file)) {
-            WARNING(tr("No such file"), tr("Can't find image \"%1\".").arg(file));
+            WARNING(tr("No such file"), tr("Can't find image \"%1\".").arg(file))
             continue;
         }
 
@@ -548,9 +551,9 @@ void GeoImageDock::loadImages(QStringList fileNames)
             image = Exiv2::ImageFactory::open(file.toStdString());
         }
         catch (Exiv2::Error error)
-            WARNING(tr("Exiv2"), tr("Error while opening \"%2\":\n%1").arg(error.what()).arg(file));
-        if (image.get() == 0)
-            WARNING(tr("Exiv2"), tr("Error while loading EXIF-data from \"%1\".").arg(file));
+            WARNING(tr("Exiv2"), tr("Error while opening \"%2\":\n%1").arg(error.what()).arg(file))
+        if (image.get() == nullptr)
+            WARNING(tr("Exiv2"), tr("Error while loading EXIF-data from \"%1\".").arg(file))
 
         image->readMetadata();
         exifData = image->exifData();
@@ -582,7 +585,7 @@ void GeoImageDock::loadImages(QStringList fileNames)
 //            QUESTION(tr("No EXIF"), tr("No EXIF header found in image \"%1\".\nDo you want to revert to improper file timestamp?").arg(file), timeQuestion);
 //            time = QFileInfo(file).created();
 //        }
-        if (time.isNull()) // if time is still null, we use the file date as reference for image sorting (and not for finding out to which node the image belongs)
+        if (time.isNull()) // if time is still nullptr, we use the file date as reference for image sorting (and not for finding out to which node the image belongs)
             // so we don't have to ask a question here
             time = QFileInfo(file).created();
 
@@ -669,7 +672,7 @@ void GeoImageDock::loadImages(QStringList fileNames)
             }
 
             // clean up
-            image.set_data(NULL, 0);
+            image.set_data(nullptr, 0);
 #else
             if (!askAndgetWalkingPapersDetails(lat, lon, positionValid))
                 continue;
@@ -772,8 +775,8 @@ void GeoImageDock::loadImages(QStringList fileNames)
 
             time = time.addSecs(offset);
 
-            Feature *feature = NULL;
-            TrackNode *Pt, *bestPt = NULL;
+            Feature *feature = nullptr;
+            TrackNode *Pt, *bestPt = nullptr;
             int a, secondsTo = INT_MAX;
             int u;
 
@@ -804,24 +807,24 @@ void GeoImageDock::loadImages(QStringList fileNames)
                 QUESTION(tr("Wrong image?"), secondsTo > 0 ?
                  tr("Image \"%1\" was taken %2 before the next trackpoint was recorded.\nDo you still want to use it?").arg(file).arg(display) :
                  tr("Image \"%1\" was taken %2 after the last trackpoint was recorded.\nDo you still want to use it?").arg(file).arg(display),
-                 noMatchQuestion);
+                 noMatchQuestion)
             }
 
             addUsedTrackpoint(NodeData(bestPt, file, time, false));
             //bestPt->setTag("_waypoint_", "true");
             bestPt->setTag("_picture_", "GeoTagged");
 
-            time = QDateTime(); // empty time to be null for the next image
+            time = QDateTime(); // empty time to be nullptr for the next image
         } else if (res == 1) {
             Coord newPos;
-            addUsedTrackpoint(NodeData(0, file, time, true));
+            addUsedTrackpoint(NodeData(nullptr, file, time, true));
         }
 
         if (progress.wasCanceled()) {
             theView->invalidate(true, true, false);
             if (photoLayer && !photoLayer->size()) {
                 theDocument->remove(photoLayer);
-                SAFE_DELETE(photoLayer);
+                SAFE_DELETE(photoLayer)
             }
             return;
         }
@@ -830,12 +833,12 @@ void GeoImageDock::loadImages(QStringList fileNames)
 
     progress.setValue(fileNames.size());
 
-    qSort(usedTrackPoints); // sort them chronological
+    std::sort(usedTrackPoints.begin(), usedTrackPoints.end()); // sort them chronological
     curImage = -1; // the sorting invalidates curImage
 
     if (photoLayer && !photoLayer->size()) {
         theDocument->remove(photoLayer);
-        SAFE_DELETE(photoLayer);
+        SAFE_DELETE(photoLayer)
     }
     theView->invalidate(true, true, false);
 
@@ -856,7 +859,7 @@ void GeoImageDock::saveImage()
     QFileInfo fi(usedTrackPoints.at(index).filename);
     QString fn = fi.absoluteFilePath() + "/" + fi.completeBaseName() + ".jpg";
 
-    QFileDialog dlg(0, tr("Specify output filename"), fn, tr("JPEG Images (*.jpg)"));
+    QFileDialog dlg(nullptr, tr("Specify output filename"), fn, tr("JPEG Images (*.jpg)"));
     dlg.setFileMode(QFileDialog::AnyFile);
     dlg.setDefaultSuffix("jpg");
     dlg.setAcceptMode(QFileDialog::AcceptSave);
@@ -892,7 +895,7 @@ Coord GeoImageDock::getGeoDataFromImage(const QString & file)
 {
     Coord pos;
     double lat = 0.0, lon = 0.0;
-    Exiv2::Image::AutoPtr image;
+    std::unique_ptr<Exiv2::Image> image;
     Exiv2::ExifData exifData;
     bool positionValid = false;
 
@@ -906,7 +909,7 @@ Coord GeoImageDock::getGeoDataFromImage(const QString & file)
     catch (Exiv2::Error error) {
         return pos;
     }
-    if (image.get() == 0)
+    if (image.get() == nullptr)
         return pos;
 
     image->readMetadata();
@@ -932,17 +935,17 @@ Coord GeoImageDock::getGeoDataFromImage(const QString & file)
 
 void GeoImageDock::addGeoDataToImage(Coord position, const QString & file)
 {
-    Exiv2::Image::AutoPtr image;
+    std::unique_ptr<Exiv2::Image> image;
 
     try {
         image = Exiv2::ImageFactory::open(file.toStdString());
     }
     catch (Exiv2::Error error) {
-        QMessageBox::warning(0, tr("Exiv2"), tr("Error while opening \"%1\":\n%2").arg(file).arg(error.what()), QMessageBox::Ok);
+        QMessageBox::warning(nullptr, tr("Exiv2"), tr("Error while opening \"%1\":\n%2").arg(file).arg(error.what()), QMessageBox::Ok);
         return;
     }
-    if (image.get() == 0) {
-        QMessageBox::warning(0, tr("Exiv2"), tr("Error while loading EXIF-data from \"%1\".").arg(file), QMessageBox::Ok);
+    if (image.get() == nullptr) {
+        QMessageBox::warning(nullptr, tr("Exiv2"), tr("Error while loading EXIF-data from \"%1\".").arg(file), QMessageBox::Ok);
         return;
     }
 
@@ -1025,7 +1028,7 @@ void ImageView::setImage(QString filename, bool movable)
         image = QImage();
     area = QRectF(QPoint(0, 0), image.size());
     zoomLevel = 1.0;
-    resizeEvent(NULL);
+    resizeEvent(nullptr);
     update();
 }
 

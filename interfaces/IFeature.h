@@ -12,7 +12,7 @@ class QPainterPath;
 class IFeature
 {
 public:
-    typedef enum {
+    enum FeatureType : uint8_t {
         Uninitialized       = 0x00,
         Point				= 0x01,
         LineString			= 0x02,
@@ -23,7 +23,7 @@ public:
         Import              = 0x40,
         Special             = 0x80,
         All					= 0xff
-    } FeatureType;
+    };
 
     class FId {
     public:
@@ -39,6 +39,7 @@ public:
     };
 
 public:
+    virtual ~IFeature() = default;
     virtual char getType() const = 0;
 
     virtual QString xmlId() const = 0;

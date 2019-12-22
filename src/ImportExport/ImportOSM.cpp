@@ -130,7 +130,7 @@ void OSMHandler::parseNode(const QXmlAttributes& atts)
                 touchedWays << w;
         }
     } else
-        Current = NULL;
+        Current = nullptr;
 }
 
 void OSMHandler::parseNd(const QXmlAttributes& atts)
@@ -212,7 +212,7 @@ void OSMHandler::parseWay(const QXmlAttributes& atts)
         Current = R;
         touchedWays << R;
     } else
-        Current = NULL;
+        Current = nullptr;
 }
 
 void OSMHandler::parseMember(const QXmlAttributes& atts)
@@ -303,7 +303,7 @@ void OSMHandler::parseRelation(const QXmlAttributes& atts)
         Current = R;
         touchedRelations << R;
     } else
-        Current = NULL;
+        Current = nullptr;
 }
 
 bool OSMHandler::startElement ( const QString &, const QString & /* localName */, const QString & qName, const QXmlAttributes & atts )
@@ -359,7 +359,7 @@ static bool downloadToResolve(const QList<Feature*>& Resolution, QWidget* aParen
                 QBuffer  File(&ba);
                 File.open(QIODevice::ReadOnly);
 
-                OSMHandler theHandler(theDocument,theLayer,NULL);
+                OSMHandler theHandler(theDocument,theLayer,nullptr);
 
                 QXmlSimpleReader xmlReader;
                 xmlReader.setContentHandler(&theHandler);
@@ -450,9 +450,9 @@ bool importOSM(QWidget* aParent, QIODevice& File, Document* theDocument, Layer* 
     /* int ErrorLine; */
     /* int ErrorColumn; */
 
-    QProgressDialog* dlg = NULL;
-    QProgressBar* Bar = NULL;
-    QLabel* Lbl = NULL;
+    QProgressDialog* dlg = nullptr;
+    QProgressBar* Bar = nullptr;
+    QLabel* Lbl = nullptr;
     IProgressWindow* aProgressWindow = dynamic_cast<IProgressWindow*>(aParent);
     if (aProgressWindow) {
         dlg = aProgressWindow->getProgressDialog();

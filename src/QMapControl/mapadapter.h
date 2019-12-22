@@ -99,7 +99,7 @@ public:
     virtual int 	getAdaptedMinZoom	(const QRectF &) const;
     virtual int		getAdaptedMaxZoom	(const QRectF &) const;
 
-    virtual QMenu* getMenu() const { return NULL; }
+    virtual QMenu* getMenu() const { return nullptr; }
 
     virtual IImageManager* getImageManager();
     virtual void setImageManager(IImageManager* anImageManager);

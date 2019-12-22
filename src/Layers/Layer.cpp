@@ -273,7 +273,7 @@ Feature* Layer::get(const IFeature::FId& id)
             return i.value();
         ++i;
     }
-    return NULL;
+    return nullptr;
 }
 
 const Feature* Layer::get(int i) const
@@ -291,7 +291,7 @@ void Layer::deleteWidget(void)
 {
 //	theWidget->deleteLater();
     delete theWidget;
-    theWidget = NULL;
+    theWidget = nullptr;
 }
 
 void Layer::setAlpha(const qreal a)
@@ -546,7 +546,7 @@ DrawingLayer * DrawingLayer::fromXML(Document* d, QXmlStreamReader& stream, QPro
     if (!DrawingLayer::doFromXML(l, d, stream, progress)) {
         d->remove(l);
         delete l;
-        return NULL;
+        return nullptr;
     }
     return l;
 }
@@ -914,12 +914,12 @@ DeletedLayer* DeletedLayer::fromXML(Document* d, QXmlStreamReader& stream, QProg
     /* Only keep DeletedLayer for backward compatibility with MDC */
     Layer::fromXML(dynamic_cast<DrawingLayer*>(d->getDirtyOrOriginLayer()), d, stream, progress);
     DrawingLayer::doFromXML(dynamic_cast<DrawingLayer*>(d->getDirtyOrOriginLayer()), d, stream, progress);
-    return NULL;
+    return nullptr;
 }
 
 LayerWidget* DeletedLayer::newWidget(void)
 {
-    return NULL;
+    return nullptr;
 }
 
 // FilterLayer

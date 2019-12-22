@@ -31,7 +31,7 @@ bool g_Merk_SelfClip = true;
 bool g_Merk_SelfClip = false;
 #endif
 
-MainWindow* g_Merk_MainWindow = NULL;
+MainWindow* g_Merk_MainWindow = nullptr;
 MemoryBackend g_backend;
 SlippyMapCache* SlippyMapWidget::theSlippyCache = 0;
 
@@ -88,10 +88,13 @@ QStringList g_getTagValueList(QString k)
 {
     QSet<quint32> retList;
     if (k == "*") {
-        foreach (QList<quint32> list, tagList)
-            retList.unite(list.toSet());
-    } else
-        retList = tagList[tagKeys.indexOf(k)].toSet();
+        foreach (QList<quint32> list, tagList) {
+            retList.unite(QSet<quint32>(list.begin(), list.end()));
+        }
+    } else {
+        const QList<quint32> &list = tagList[tagKeys.indexOf(k)];
+        retList = QSet(list.begin(), list.end());
+    }
 
     QStringList res;
     foreach (quint32 i, retList)
@@ -112,7 +115,7 @@ quint32 g_getTagKeyIndex(const QString& s)
 
 QStringList g_getTagKeyList()
 {
-    return tagKeys.toSet().toList();
+    return QSet(tagKeys.begin(), tagKeys.end()).values();
 }
 
 QString g_getTagValue(int idx)

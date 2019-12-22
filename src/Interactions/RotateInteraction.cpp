@@ -94,7 +94,7 @@ void RotateInteraction::snapMousePressEvent(QMouseEvent * anEvent, Feature* aLas
     view()->setInteracting(true);
 
     StartDragPosition = XY_TO_COORD(anEvent->pos());
-    OriginNode = NULL;
+    OriginNode = nullptr;
     NodeOrigin  = false;
     CoordBox selBB = sel[0]->boundingBox();
     for (int j=0; j<sel.size(); j++) {

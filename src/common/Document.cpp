@@ -38,6 +38,8 @@
 #include <QSet>
 #include <QReadWriteLock>
 
+#include <algorithm>
+
 /* MAPDOCUMENT */
 
 class MapDocumentPrivate
@@ -278,7 +280,7 @@ Document* Document::fromXML(QString title, QXmlStreamReader& stream, qreal versi
 
     if (progress && progress->wasCanceled()) {
         delete NewDoc;
-        NewDoc = NULL;
+        NewDoc = nullptr;
     }
 
     if (NewDoc) {
@@ -409,12 +411,12 @@ FilterLayer* Document::addFilterLayer(FilterLayer *aLayer)
 
 void Document::remove(Layer* aLayer)
 {
-    QList<Layer*>::iterator i = qFind(p->Layers.begin(),p->Layers.end(), aLayer);
+    QList<Layer*>::iterator i = std::find(p->Layers.begin(),p->Layers.end(), aLayer);
     if (i != p->Layers.end()) {
         p->Layers.erase(i);
     }
     if (aLayer == p->lastDownloadLayer)
-        p->lastDownloadLayer = NULL;
+        p->lastDownloadLayer = nullptr;
     if (p->theDock)
         p->theDock->deleteLayer(aLayer);
 }
@@ -487,7 +489,7 @@ Feature* Document::getFeature(const IFeature::FId& id)
         if (F)
             return F;
     }
-    return NULL;
+    return nullptr;
 }
 
 void Document::setDirtyLayer(DirtyLayer* aLayer)
@@ -509,7 +511,7 @@ Layer* Document::getDirtyOrOriginLayer(Layer* aLayer)
     if (g_Merk_Frisius) {
         if (aLayer)
             return aLayer;
-        DrawingLayer* firstDrLayer = NULL;
+        DrawingLayer* firstDrLayer = nullptr;
         for (int i=0; i<layerSize(); ++i) {
             if (!getLayer(i)->isEnabled())
                 continue;
@@ -867,7 +869,7 @@ bool Document::setFilterType(FilterType aFilter)
         return true;
     }
     p->tagFilter = TagSelector::parse(M_PREFS->getFilter(aFilter).filter);
-    return (p->tagFilter != NULL);
+    return (p->tagFilter != nullptr);
 }
 
 TagSelector* Document::getTagFilter()
@@ -926,7 +928,7 @@ Document* Document::getDocumentFromXml(QDomDocument* theXmlDoc)
 //        c =c.nextSiblingElement();
 //    }
 //    if (c.isNull())
-//        return NULL;
+//        return nullptr;
 
     if (c.tagName() == "osm") {
         QString xml;
@@ -935,7 +937,7 @@ Document* Document::getDocumentFromXml(QDomDocument* theXmlDoc)
 
         QXmlStreamReader stream(xml);
 
-        Document* NewDoc = new Document(NULL);
+        Document* NewDoc = new Document(nullptr);
         DrawingLayer* l = new DrawingLayer("Dummy");
         NewDoc->add(l);
 
@@ -963,7 +965,7 @@ Document* Document::getDocumentFromXml(QDomDocument* theXmlDoc)
 
         return NewDoc;
     } else if (c.tagName() == "kml") {
-        Document* NewDoc = new Document(NULL);
+        Document* NewDoc = new Document(nullptr);
         DrawingLayer* l = new DrawingLayer("Dummy");
         NewDoc->add(l);
 
@@ -977,7 +979,7 @@ Document* Document::getDocumentFromXml(QDomDocument* theXmlDoc)
         return NewDoc;
 #ifndef FRISIUS_BUILD
     } else if (c.tagName() == "osmChange" || c.tagName() == "osmchange") {
-        Document* NewDoc = new Document(NULL);
+        Document* NewDoc = new Document(nullptr);
         DrawingLayer* l = new DrawingLayer("Dummy");
         NewDoc->add(l);
 
@@ -992,7 +994,7 @@ Document* Document::getDocumentFromXml(QDomDocument* theXmlDoc)
 #endif
     } else if (c.tagName() == "gpx") {
     }
-    return NULL;
+    return nullptr;
 }
 
 QList<Feature*> Document::mergeDocument(Document* otherDoc, Layer* layer, CommandList* theList)
@@ -1007,7 +1009,7 @@ QList<Feature*> Document::mergeDocument(Document* otherDoc, Layer* layer, Comman
         if (getFeature(F->id()))
             F->resetId();
 
-        // Re-link null features to the ones in the current document
+        // Re-link nullptr features to the ones in the current document
         for (int j=0; j<F->size(); ++j) {
             Feature* C = F->get(j);
             if (C->isNull()) {
@@ -1042,20 +1044,20 @@ Document* Document::getDocumentFromClipboard()
 
     if (clipboard->mimeData()->hasFormat("application/x-openstreetmap+xml")) {
         if (!theXmlDoc.setContent(clipboard->mimeData()->data("application/x-openstreetmap+xml"))) {
-            return NULL;
+            return nullptr;
         }
     } else
     if (clipboard->mimeData()->hasFormat("application/vnd.google-earth.kml+xml")) {
         if (!theXmlDoc.setContent(clipboard->mimeData()->data("application/vnd.google-earth.kml+xml"))) {
-            return NULL;
+            return nullptr;
         }
     } else
     if (clipboard->mimeData()->hasText()) {
         if (!theXmlDoc.setContent(clipboard->text())) {
-            return NULL;
+            return nullptr;
         }
     } else {
-        return NULL;
+        return nullptr;
     }
     return Document::getDocumentFromXml(&theXmlDoc);
 }

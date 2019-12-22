@@ -323,7 +323,7 @@ CommandList* CommandList::fromXML(Document* d, QXmlStreamReader& stream)
     if (l->Size == 0) {
         qDebug() << "!! Corrupted (empty) command list. Deleting...";
         delete l;
-        return NULL;
+        return nullptr;
     }
 
     return l;

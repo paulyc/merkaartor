@@ -1520,15 +1520,15 @@ inline bool HeaderBlock::has_bbox() const {
   return _has_bit(0);
 }
 inline void HeaderBlock::clear_bbox() {
-  if (bbox_ != NULL) bbox_->::OSMPBF::HeaderBBox::Clear();
+  if (bbox_ != nullptr) bbox_->::OSMPBF::HeaderBBox::Clear();
   _clear_bit(0);
 }
 inline const ::OSMPBF::HeaderBBox& HeaderBlock::bbox() const {
-  return bbox_ != NULL ? *bbox_ : *default_instance_->bbox_;
+  return bbox_ != nullptr ? *bbox_ : *default_instance_->bbox_;
 }
 inline ::OSMPBF::HeaderBBox* HeaderBlock::mutable_bbox() {
   _set_bit(0);
-  if (bbox_ == NULL) bbox_ = new ::OSMPBF::HeaderBBox;
+  if (bbox_ == nullptr) bbox_ = new ::OSMPBF::HeaderBBox;
   return bbox_;
 }
 
@@ -1781,15 +1781,15 @@ inline bool PrimitiveBlock::has_stringtable() const {
   return _has_bit(0);
 }
 inline void PrimitiveBlock::clear_stringtable() {
-  if (stringtable_ != NULL) stringtable_->::OSMPBF::StringTable::Clear();
+  if (stringtable_ != nullptr) stringtable_->::OSMPBF::StringTable::Clear();
   _clear_bit(0);
 }
 inline const ::OSMPBF::StringTable& PrimitiveBlock::stringtable() const {
-  return stringtable_ != NULL ? *stringtable_ : *default_instance_->stringtable_;
+  return stringtable_ != nullptr ? *stringtable_ : *default_instance_->stringtable_;
 }
 inline ::OSMPBF::StringTable* PrimitiveBlock::mutable_stringtable() {
   _set_bit(0);
-  if (stringtable_ == NULL) stringtable_ = new ::OSMPBF::StringTable;
+  if (stringtable_ == nullptr) stringtable_ = new ::OSMPBF::StringTable;
   return stringtable_;
 }
 
@@ -1916,15 +1916,15 @@ inline bool PrimitiveGroup::has_dense() const {
   return _has_bit(1);
 }
 inline void PrimitiveGroup::clear_dense() {
-  if (dense_ != NULL) dense_->::OSMPBF::DenseNodes::Clear();
+  if (dense_ != nullptr) dense_->::OSMPBF::DenseNodes::Clear();
   _clear_bit(1);
 }
 inline const ::OSMPBF::DenseNodes& PrimitiveGroup::dense() const {
-  return dense_ != NULL ? *dense_ : *default_instance_->dense_;
+  return dense_ != nullptr ? *dense_ : *default_instance_->dense_;
 }
 inline ::OSMPBF::DenseNodes* PrimitiveGroup::mutable_dense() {
   _set_bit(1);
-  if (dense_ == NULL) dense_ = new ::OSMPBF::DenseNodes;
+  if (dense_ == nullptr) dense_ = new ::OSMPBF::DenseNodes;
   return dense_;
 }
 
@@ -2359,15 +2359,15 @@ inline bool Node::has_info() const {
   return _has_bit(3);
 }
 inline void Node::clear_info() {
-  if (info_ != NULL) info_->::OSMPBF::Info::Clear();
+  if (info_ != nullptr) info_->::OSMPBF::Info::Clear();
   _clear_bit(3);
 }
 inline const ::OSMPBF::Info& Node::info() const {
-  return info_ != NULL ? *info_ : *default_instance_->info_;
+  return info_ != nullptr ? *info_ : *default_instance_->info_;
 }
 inline ::OSMPBF::Info* Node::mutable_info() {
   _set_bit(3);
-  if (info_ == NULL) info_ = new ::OSMPBF::Info;
+  if (info_ == nullptr) info_ = new ::OSMPBF::Info;
   return info_;
 }
 
@@ -2437,15 +2437,15 @@ inline bool DenseNodes::has_denseinfo() const {
   return _has_bit(1);
 }
 inline void DenseNodes::clear_denseinfo() {
-  if (denseinfo_ != NULL) denseinfo_->::OSMPBF::DenseInfo::Clear();
+  if (denseinfo_ != nullptr) denseinfo_->::OSMPBF::DenseInfo::Clear();
   _clear_bit(1);
 }
 inline const ::OSMPBF::DenseInfo& DenseNodes::denseinfo() const {
-  return denseinfo_ != NULL ? *denseinfo_ : *default_instance_->denseinfo_;
+  return denseinfo_ != nullptr ? *denseinfo_ : *default_instance_->denseinfo_;
 }
 inline ::OSMPBF::DenseInfo* DenseNodes::mutable_denseinfo() {
   _set_bit(1);
-  if (denseinfo_ == NULL) denseinfo_ = new ::OSMPBF::DenseInfo;
+  if (denseinfo_ == nullptr) denseinfo_ = new ::OSMPBF::DenseInfo;
   return denseinfo_;
 }
 
@@ -2599,15 +2599,15 @@ inline bool Way::has_info() const {
   return _has_bit(3);
 }
 inline void Way::clear_info() {
-  if (info_ != NULL) info_->::OSMPBF::Info::Clear();
+  if (info_ != nullptr) info_->::OSMPBF::Info::Clear();
   _clear_bit(3);
 }
 inline const ::OSMPBF::Info& Way::info() const {
-  return info_ != NULL ? *info_ : *default_instance_->info_;
+  return info_ != nullptr ? *info_ : *default_instance_->info_;
 }
 inline ::OSMPBF::Info* Way::mutable_info() {
   _set_bit(3);
-  if (info_ == NULL) info_ = new ::OSMPBF::Info;
+  if (info_ == nullptr) info_ = new ::OSMPBF::Info;
   return info_;
 }
 
@@ -2711,15 +2711,15 @@ inline bool Relation::has_info() const {
   return _has_bit(3);
 }
 inline void Relation::clear_info() {
-  if (info_ != NULL) info_->::OSMPBF::Info::Clear();
+  if (info_ != nullptr) info_->::OSMPBF::Info::Clear();
   _clear_bit(3);
 }
 inline const ::OSMPBF::Info& Relation::info() const {
-  return info_ != NULL ? *info_ : *default_instance_->info_;
+  return info_ != nullptr ? *info_ : *default_instance_->info_;
 }
 inline ::OSMPBF::Info* Relation::mutable_info() {
   _set_bit(3);
-  if (info_ == NULL) info_ = new ::OSMPBF::Info;
+  if (info_ == nullptr) info_ = new ::OSMPBF::Info;
   return info_;
 }
 

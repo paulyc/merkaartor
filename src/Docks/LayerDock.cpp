@@ -62,7 +62,7 @@ LayerDock::~LayerDock()
 
 void LayerDock::dragEnterEvent(QDragEnterEvent *event)
 {
-    p->theDropWidget = NULL;
+    p->theDropWidget = nullptr;
     if (event->mimeData()->hasFormat("application/x-layer"))
         if ((p->theDropWidget = dynamic_cast<LayerWidget*>(event->source())))
             event->acceptProposedAction();
@@ -175,7 +175,7 @@ Layer* LayerDock::getSelectedLayer()
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void LayerDock::createContent()
@@ -193,13 +193,13 @@ void LayerDock::createContent()
     p->tab->setUsesScrollButtons(true);
     p->tab->setElideMode(Qt::ElideRight);
     int t;
-    t = p->tab->addTab(NULL);
+    t = p->tab->addTab(nullptr);
     p->tab->setTabData(t, Layer::All);
-    t = p->tab->addTab(NULL);
+    t = p->tab->addTab(nullptr);
     p->tab->setTabData(t, Layer::Map);
-    t = p->tab->addTab(NULL);
+    t = p->tab->addTab(nullptr);
     p->tab->setTabData(t, Layer::Draw);
-    t = p->tab->addTab(NULL);
+    t = p->tab->addTab(nullptr);
     p->tab->setTabData(t, Layer::Tracks);
     retranslateTabBar();
     connect(p->tab, SIGNAL(currentChanged (int)), this, SLOT(tabChanged(int)));
@@ -295,7 +295,7 @@ void LayerDock::layerClosed(Layer* l)
 #endif
     p->Main->document()->removeDownloadBox(l);
     if (p->Main->document()->getLastDownloadLayer() == l)
-        p->Main->document()->setLastDownloadLayer(NULL);
+        p->Main->document()->setLastDownloadLayer(nullptr);
 
     emit layersClosed();
     update();
@@ -524,7 +524,7 @@ void LayerDock::mousePressEvent ( QMouseEvent * ev )
             if (CHILD_WIDGET(i))
                 CHILD_WIDGET(i)->setChecked(false);
         }
-        p->lastSelWidget = NULL;
+        p->lastSelWidget = nullptr;
         ev->ignore();
         return;
     }
@@ -535,7 +535,7 @@ void LayerDock::mousePressEvent ( QMouseEvent * ev )
         if (toSelect)
             p->lastSelWidget = aWidget;
         else
-            p->lastSelWidget = NULL;
+            p->lastSelWidget = nullptr;
     } else
     if (ev->modifiers() & Qt::ShiftModifier) {
         bool toSelect = false;

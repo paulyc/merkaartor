@@ -56,12 +56,12 @@ public:
 public:
     ImageMapLayerPrivate()
     {
-        theMapAdapter = NULL;
-        theImageManager = NULL;
+        theMapAdapter = nullptr;
+        theImageManager = nullptr;
 #ifdef USE_WEBKIT
-        theBrowserImageManager = NULL;
+        theBrowserImageManager = nullptr;
 #endif
-        theNetworkImageManager = NULL;
+        theNetworkImageManager = nullptr;
     }
     ~ImageMapLayerPrivate()
     {
@@ -181,7 +181,7 @@ void ImageMapLayer::setMapAdapter(const QUuid& theAdapterUid, const QString& ser
 
     if (p->theImageManager)
         p->theImageManager->abortLoading();
-    p->theImageManager = NULL;
+    p->theImageManager = nullptr;
     on_loadingFinished();
     if (p->theMapAdapter)
         SAFE_DELETE(p->theMapAdapter);
@@ -727,7 +727,7 @@ QRect ImageMapLayer::drawFull(MapView& theView, QRect& rect)
             } else
                 return rect;
         } else if (p->theMapAdapter->getType() == IMapAdapter::VectorBackground) {
-            const QList<IFeature*>* theFeatures = p->theMapAdapter->getPaths(wgs84vp, NULL);
+            const QList<IFeature*>* theFeatures = p->theMapAdapter->getPaths(wgs84vp, nullptr);
             if (theFeatures) {
                 foreach(IFeature* f, *theFeatures) {
                     const QPainterPath& thePath = f->getPath();
@@ -786,7 +786,7 @@ QRect ImageMapLayer::drawFull(MapView& theView, QRect& rect)
 //                        }
 //                        F->clearTags();
 
-//                        // Re-link null features to the ones in the current document
+//                        // Re-link nullptr features to the ones in the current document
 //                        for (int j=0; j<F->size(); ++j) {
 //                            Feature* C = F->get(j);
 //                            if (C->isNull()) {

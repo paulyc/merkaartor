@@ -312,8 +312,8 @@ public:
     static void fromXML(QXmlStreamReader& stream, Feature* F);
     virtual void toXML(QXmlStreamWriter& stream, bool strict, QString changetsetid = QString());
 
-    virtual QString toXML(int lvl=0, QProgressDialog * progress=NULL);
-    virtual bool toXML(QXmlStreamWriter& stream, QProgressDialog * progress=NULL, bool strict=false, QString changetsetid = QString()) = 0;
+    virtual QString toXML(int lvl=0, QProgressDialog * progress=nullptr);
+    virtual bool toXML(QXmlStreamWriter& stream, QProgressDialog * progress=nullptr, bool strict=false, QString changetsetid = QString()) = 0;
 
     QString toMainHtml(QString type, QString systemtype);
     virtual QString toHtml() { return QString(); }

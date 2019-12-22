@@ -26,7 +26,7 @@ namespace NameFinder
             : QAbstractTableModel ( parent )
     {
         showColumns = 2;
-        myResults = NULL;
+        myResults = nullptr;
     }
 
 
@@ -38,7 +38,7 @@ namespace NameFinder
     int NameFinderTableModel::rowCount ( const QModelIndex &parent ) const
     {
         Q_UNUSED(parent)
-        if ( myResults == NULL )
+        if ( myResults == nullptr )
             return 0;
         if ( !myResults->isEmpty() )
             return myResults->count();
@@ -92,7 +92,7 @@ namespace NameFinder
         }
         else if ( role == Qt::DisplayRole )
         {
-            if ( myResults == NULL )
+            if ( myResults == nullptr )
                 return QVariant();
             if ( !myResults->isEmpty() )
             {

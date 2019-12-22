@@ -18,7 +18,7 @@ bool importNGT(QWidget* /* aParent */, const QString& aFilename, Document* theDo
     if (f.open(QIODevice::ReadOnly))
     {
         QTextStream s(&f);
-        CommandList* theList  = new CommandList(QApplication::tr("Import NGT"), NULL);
+        CommandList* theList  = new CommandList(QApplication::tr("Import NGT"), nullptr);
         TrackSegment* theSegment = g_backend.allocSegment(theLayer);
         while (!f.atEnd())
         {

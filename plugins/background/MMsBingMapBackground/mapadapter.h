@@ -73,7 +73,7 @@ public:
      */
     virtual QString projection() const;
 
-    virtual QMenu* getMenu() const { return NULL; }
+    virtual QMenu* getMenu() const { return nullptr; }
 
 protected:
     QString name;

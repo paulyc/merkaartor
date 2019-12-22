@@ -118,7 +118,7 @@ public:
     virtual int getTilesWE(int) const { return -1; }
     virtual int getTilesNS(int) const { return -1; }
 
-    virtual QMenu* getMenu() const { return NULL; }
+    virtual QMenu* getMenu() const { return nullptr; }
 
     virtual IImageManager* getImageManager();
     virtual void setImageManager(IImageManager* anImageManager);

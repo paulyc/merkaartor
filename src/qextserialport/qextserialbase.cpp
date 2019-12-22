@@ -9,7 +9,7 @@
 A common base class for Win_QextSerialBase, Posix_QextSerialBase and QextSerialPort.
 */
 #ifdef QT_THREAD_SUPPORT
-QMutex* QextSerialBase::mutex=NULL;
+QMutex* QextSerialBase::mutex=nullptr;
 unsigned long QextSerialBase::refCount=0;
 #endif
 
@@ -68,7 +68,7 @@ QextSerialBase::~QextSerialBase()
     refCount--;
     if (mutex && refCount==0) {
         delete mutex;
-        mutex=NULL;
+        mutex=nullptr;
     }
 #endif
 

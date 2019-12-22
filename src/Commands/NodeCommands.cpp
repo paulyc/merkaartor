@@ -99,13 +99,13 @@ MoveNodeCommand * MoveNodeCommand::fromXML(Document * d, QXmlStreamReader& strea
     if (stream.attributes().hasAttribute("layer"))
         a->theLayer = d->getLayer(stream.attributes().value("layer").toString());
     else
-        a->theLayer = NULL;
+        a->theLayer = nullptr;
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->thePoint = Feature::getNodeOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::Point, stream.attributes().value("trackpoint").toString().toLongLong()));
     a->description = QApplication::tr("Move node %1").arg(a->thePoint->description());

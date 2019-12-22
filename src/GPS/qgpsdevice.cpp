@@ -689,10 +689,10 @@ bool QGPSComDevice::openDevice()
             fn.replace(':', '-');
             LogFile = new QFile(M_PREFS->getGpsLogDir() + "/"+fn);
             if (!LogFile->open(QIODevice::WriteOnly)) {
-                QMessageBox::critical(NULL, tr("GPS log error"),
+                QMessageBox::critical(nullptr, tr("GPS log error"),
                     tr("Unable to create GPS log file: %1.").arg(M_PREFS->getGpsLogDir() + "/"+fn), QMessageBox::Ok);
                 delete LogFile;
-                LogFile = NULL;
+                LogFile = nullptr;
             }
         }
         return true;
@@ -713,7 +713,7 @@ bool QGPSComDevice::closeDevice()
         LogFile->close();
         delete LogFile;
     }
-    LogFile = NULL;
+    LogFile = nullptr;
 
     return true;
 }
@@ -811,7 +811,7 @@ bool QGPSFileDevice::openDevice()
 
     if (!theFile->open(QIODevice::ReadOnly | QIODevice::Text)) {
         delete theFile;
-        theFile = NULL;
+        theFile = nullptr;
         return false;
     }
 
@@ -929,10 +929,10 @@ bool QGPSDDevice::openDevice()
 //		fn.replace(':', '-');
 //		LogFile = new QFile(M_PREFS->getGpsLogDir() + "/"+fn);
 //		if (!LogFile->open(QIODevice::WriteOnly)) {
-//			QMessageBox::critical(NULL, tr("GPS log error"),
+//			QMessageBox::critical(nullptr, tr("GPS log error"),
 //				tr("Unable to create GPS log file: %1.").arg(M_PREFS->getGpsLogDir() + "/"+fn), QMessageBox::Ok);
 //			delete LogFile;
-//			LogFile = NULL;
+//			LogFile = nullptr;
 //		}
 //	}
     return true;
@@ -1111,10 +1111,10 @@ bool QGPSDDevice::openDevice()
         fn.replace(':', '-');
         LogFile = new QFile(M_PREFS->getGpsLogDir() + "/"+fn);
         if (!LogFile->open(QIODevice::WriteOnly)) {
-            QMessageBox::critical(NULL, tr("GPS log error"),
+            QMessageBox::critical(nullptr, tr("GPS log error"),
                 tr("Unable to create GPS log file: %1.").arg(M_PREFS->getGpsLogDir() + "/"+fn), QMessageBox::Ok);
             delete LogFile;
-            LogFile = NULL;
+            LogFile = nullptr;
         }
     }
     return true;

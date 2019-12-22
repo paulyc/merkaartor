@@ -918,7 +918,7 @@ qint64 Posix_QextSerialPort::bytesAvailable()
           Make sure we use the right timeout values*/
         //memcpy(&Posix_Timeout, &Posix_Copy_Timeout, sizeof(struct timeval));
         Posix_Timeout = Posix_Copy_Timeout;
-        int n=select(Posix_File->handle()+1, &fileSet, NULL, &fileSet, &Posix_Timeout);
+        int n=select(Posix_File->handle()+1, &fileSet, nullptr, &fileSet, &Posix_Timeout);
         if (!n) {
             lastErr=E_PORT_TIMEOUT;
             UNLOCK_MUTEX();

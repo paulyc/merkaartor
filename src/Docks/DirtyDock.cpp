@@ -30,9 +30,9 @@ DirtyDock::DirtyDock(MainWindow* aParent)
 
     ui.setupUi(getWidget());
 
-    centerAction = new QAction(NULL, this);
+    centerAction = new QAction(nullptr, this);
     connect(centerAction, SIGNAL(triggered()), this, SLOT(on_centerAction_triggered()));
-    centerZoomAction = new QAction(NULL, this);
+    centerZoomAction = new QAction(nullptr, this);
     connect(centerZoomAction, SIGNAL(triggered()), this, SLOT(on_centerZoomAction_triggered()));
 
     connect(ui.ChangesList, SIGNAL(itemSelectionChanged()), this, SLOT(on_ChangesList_itemSelectionChanged()));

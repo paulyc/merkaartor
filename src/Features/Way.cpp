@@ -436,7 +436,7 @@ void Way::updateMeta()
         qreal Priority = tagValue("layer","0").toInt();
         if (Priority >= 0)
             Priority++;
-        int layer = Priority;
+        int layer = (int)Priority;
         // dummy number to get a deterministic feature sort
 //		Priority += sin(intToRad(boundingBox().lonDiff()));
         Priority += p->Distance / INT_MAX;
@@ -525,7 +525,7 @@ void Way::drawParentsSpecial(QPainter& thePainter, QPen& Pen, MapView* theView)
 
 void Way::drawChildrenSpecial(QPainter& thePainter, QPen& Pen, MapView* theView, int depth)
 {
-    Q_UNUSED(depth);
+    Q_UNUSED(depth)
 
     QPen TP(Pen);
     TP.setWidth(TP.width()*3);
@@ -580,7 +580,7 @@ qreal Way::pixelDistance(const QPointF& Target, qreal ClearEndDistance, const QL
 Node* Way::pixelDistanceNode(const QPointF& Target, qreal ClearEndDistance, MapView* theView, const QList<Feature*>& NoSnap, bool NoSelectVirtuals) const
 {
     qreal Best = 1000000;
-    Node* ret = NULL;
+    Node* ret = nullptr;
 
     for (int i=0; i<p->Nodes.size(); ++i)
     {
@@ -937,7 +937,7 @@ bool Way::isExtrimity(Node* node)
 
 Way * Way::GetSingleParentRoad(Feature * mapFeature)
 {
-    Way * parentRoad = NULL;
+    Way * parentRoad = nullptr;
 
     for (int i=0; i<mapFeature->sizeParents(); i++)
     {
@@ -947,9 +947,9 @@ Way * Way::GetSingleParentRoad(Feature * mapFeature)
             continue;
 
         if (parentRoad && road != parentRoad)
-            return NULL;
+            return nullptr;
 
-        //FIXME This test shouldn't be necessary, but there is at least a case where the road has a NULL layer. The root cause must be found.
+        //FIXME This test shouldn't be necessary, but there is at least a case where the road has a nullptr layer. The root cause must be found.
         if (!(road->isDeleted()) && road->layer() && road->layer()->isEnabled())
             parentRoad = road;
     }
@@ -959,7 +959,7 @@ Way * Way::GetSingleParentRoad(Feature * mapFeature)
 
 Way * Way::GetSingleParentRoadInner(Feature * mapFeature)
 {
-    Way * parentRoad = NULL;
+    Way * parentRoad = nullptr;
     Node* trackPoint = CAST_NODE(mapFeature);
 
     for (int i=0; i<mapFeature->sizeParents(); i++)
@@ -973,9 +973,9 @@ Way * Way::GetSingleParentRoadInner(Feature * mapFeature)
             continue;
 
         if (parentRoad && road != parentRoad)
-            return NULL;
+            return nullptr;
 
-        //FIXME This test shouldn't be necessary, but there is at least a case where the road has a NULL layer. The root cause must be found.
+        //FIXME This test shouldn't be necessary, but there is at least a case where the road has a nullptr layer. The root cause must be found.
         if (!(road->isDeleted()) && road->layer() && road->layer()->isEnabled())
             parentRoad = road;
     }
@@ -994,7 +994,7 @@ int Way::createJunction(Document* theDocument, CommandList* theList, Way* R1, Wa
         for (int j=0; j<R2->size()-1; ++j) {
             QLineF S2(R2->getNode(j)->position(), R2->getNode(j+1)->position());
             QPointF intPoint;
-            if (S1.intersect(S2, &intPoint) == QLineF::BoundedIntersection) {
+            if (S1.intersects(S2, &intPoint) == QLineF::BoundedIntersection) {
                 numInter++;
                 if (doIt) {
                     Node* pt = g_backend.allocNode(theDocument->getDirtyOrOriginLayer(R1->layer()), intPoint);

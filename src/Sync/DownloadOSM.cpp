@@ -131,7 +131,7 @@ bool Downloader::request(const QString& theMethod, const QUrl& url, const QStrin
 }
 
 void Downloader::on_authenticationRequired( QNetworkReply *reply, QAuthenticator *auth) {
-    static QNetworkReply *lastReply = NULL;
+    static QNetworkReply *lastReply = nullptr;
 
     /* Only provide authentication the first time we see this reply, to avoid
      * infinite loop providing the same credentials. */
@@ -449,7 +449,7 @@ bool downloadFeatures(MainWindow* Main, const QList<Feature*>& aDownloadList , D
         list << F->id();
     }
 
-    bool ok = downloadFeatures(Main, list, theDocument, NULL);
+    bool ok = downloadFeatures(Main, list, theDocument, nullptr);
 
     return ok;
 }

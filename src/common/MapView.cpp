@@ -183,7 +183,7 @@ void MapView::invalidate(bool updateWireframe, bool updateOsmMap, bool updateBgM
         SAFE_DELETE(StaticBackground)
     }
     if (p->theDocument && updateBgMap) {
-        IMapWatermark* WatermarkAdapter = NULL;
+        IMapWatermark* WatermarkAdapter = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(p->theDocument); !ImgIt.isEnd(); ++ImgIt) {
             if (ImgIt.get()->isVisible()) {
                 ImgIt.get()->forceRedraw(*this, p->BackgroundOnlyVpTransform, rect());
@@ -506,7 +506,7 @@ void MapView::drawLatLonGrid(QPainter & P)
         QPointF pt;
         while (k < parallelLines.at(i).size()-2) {
             l = QLineF(p->theTransform.map(parallelLines.at(i).at(k)), p->theTransform.map(parallelLines.at(i).at(k+1)));
-            if (l.intersect(lb, &pt) == QLineF::BoundedIntersection)
+            if (l.intersects(lb, &pt) == QLineF::BoundedIntersection)
                 break;
             ++k;
         }
@@ -526,7 +526,7 @@ void MapView::drawLatLonGrid(QPainter & P)
         QPointF pt;
         while (k < medianLines.at(i).size()-2) {
             l = QLineF(p->theTransform.map(medianLines.at(i).at(k)), p->theTransform.map(medianLines.at(i).at(k+1)));
-            if (l.intersect(lt, &pt) == QLineF::BoundedIntersection)
+            if (l.intersects(lt, &pt) == QLineF::BoundedIntersection)
                 break;
             ++k;
         }
@@ -1002,7 +1002,7 @@ void MapView::setViewport(const CoordBox & TargetMap,
     p->ZoomLevel = p->theTransform.m11();
 
     if (TEST_RFLAGS(RendererOptions::LockZoom) && p->theDocument) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(p->theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;
@@ -1028,7 +1028,7 @@ void MapView::zoom(qreal d, const QPoint & Around)
 
     qreal z = d;
     if (TEST_RFLAGS(RendererOptions::LockZoom)) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(p->theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;
@@ -1088,7 +1088,7 @@ void MapView::zoom(qreal d, const QPoint & Around,
 void MapView::adjustZoomToBoris()
 {
     if (TEST_RFLAGS(RendererOptions::LockZoom)) {
-        ImageMapLayer* l = NULL;
+        ImageMapLayer* l = nullptr;
         for (LayerIterator<ImageMapLayer*> ImgIt(p->theDocument); !ImgIt.isEnd(); ++ImgIt) {
             l = ImgIt.get();
             break;

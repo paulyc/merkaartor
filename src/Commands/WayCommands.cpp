@@ -101,9 +101,9 @@ WayAddNodeCommand * WayAddNodeCommand::fromXML(Document * d, QXmlStreamReader& s
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->theRoad = Feature::getWayOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::LineString, stream.attributes().value("road").toString().toLongLong()));
     a->theTrackPoint = Feature::getNodeOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::Point, stream.attributes().value("trackpoint").toString().toLongLong()));
@@ -230,9 +230,9 @@ WayRemoveNodeCommand * WayRemoveNodeCommand::fromXML(Document * d, QXmlStreamRea
     if (stream.attributes().hasAttribute("oldlayer"))
         a->oldLayer = d->getLayer(stream.attributes().value("oldlayer").toString());
     else
-        a->oldLayer = NULL;
+        a->oldLayer = nullptr;
     if (!a->theLayer)
-        return NULL;
+        return nullptr;
 
     a->wasClosed = (stream.attributes().hasAttribute("closed") && stream.attributes().value("closed") == "true");
     a->theRoad = Feature::getWayOrCreatePlaceHolder(d, a->theLayer, IFeature::FId(IFeature::LineString, stream.attributes().value("road").toString().toLongLong()));

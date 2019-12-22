@@ -42,12 +42,12 @@ QPixmap* PixmapWidget::pixmap()
 
 bool PixmapWidget::isPixmap()
 {
-    return (m_pm != NULL && m_svgr == NULL);
+    return (m_pm != nullptr && m_svgr == nullptr);
 }
 
 bool PixmapWidget::isSvg()
 {
-    return (m_svgr != NULL);
+    return (m_svgr != nullptr);
 }
 
 PixmapWidget::~PixmapWidget()

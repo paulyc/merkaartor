@@ -276,10 +276,10 @@ void EditInteraction::on_remove_triggered()
             Sel.push_back(theMain->properties()->selection(i));
     }
     if (Sel.size() == 0) {
-        QMessageBox::critical(NULL, tr("Cannot delete"), tr("Cannot delete the selection because it is outside the downloaded area."));
+        QMessageBox::critical(nullptr, tr("Cannot delete"), tr("Cannot delete the selection because it is outside the downloaded area."));
         return;
     } else if (Sel.size() != theMain->properties()->selectionSize()) {
-        if (!QMessageBox::warning(NULL, tr("Cannot delete everything"),
+        if (!QMessageBox::warning(nullptr, tr("Cannot delete everything"),
                              tr("The complete selection cannot be deleted because part of it is outside the downloaded area.\n"
                                 "Delete what can be?"),
                              QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes))
@@ -290,7 +290,7 @@ void EditInteraction::on_remove_triggered()
     if (Sel.size() == 1)
         theList  = new CommandList(MainWindow::tr("Remove feature %1").arg(Sel[0]->id().numId), Sel[0]);
     else
-        theList  = new CommandList(MainWindow::tr("Remove features"), NULL);
+        theList  = new CommandList(MainWindow::tr("Remove features"), nullptr);
 
     bool deleteChildrenOKDefined = false;
     bool deleteChildrenOK = false;
@@ -299,7 +299,7 @@ void EditInteraction::on_remove_triggered()
             QList<Feature*> Alternatives;
 
             if (Sel[i]->size() && !deleteChildrenOKDefined) {
-                MDiscardableMessage dlg(NULL,
+                MDiscardableMessage dlg(nullptr,
                     MainWindow::tr("Delete Children."),
                     MainWindow::tr("Do you want to delete the children nodes also?\n"
                                    "Note that OSM nodes outside the downloaded area will be kept."));
@@ -326,7 +326,7 @@ void EditInteraction::on_reverse_triggered()
 {
     QList<Feature*> selection = theMain->properties()->selection();
     QString desc = selection.size() == 1 ? tr("Reverse way %1").arg(selection[0]->id().numId) : tr("Reverse %1 ways");
-    CommandList* theList  = new CommandList(MainWindow::tr("Reverse %1 ways").arg(selection.size()), NULL);
+    CommandList* theList  = new CommandList(MainWindow::tr("Reverse %1 ways").arg(selection.size()), nullptr);
     foreach (Feature* f, selection)
         if (Way* R = dynamic_cast<Way*>(f))
             reversePoints(document(), theList, R);

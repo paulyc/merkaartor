@@ -30,7 +30,7 @@ EditCompleterDelegate::~EditCompleterDelegate()
 
 QWidget* EditCompleterDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& /* option */, const QModelIndex& index) const
 {
-    QCompleter* completer = NULL;
+    QCompleter* completer = nullptr;
 
     QWidget* edit;
 

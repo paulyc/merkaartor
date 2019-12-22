@@ -507,7 +507,7 @@ Way *cutoutRoad(Document* theDocument, CommandList* theList, PropertiesDock* /* 
         if (Result[i]->isExtrimity(N1) && Result[i]->isExtrimity(N2))
             return Result[i];
     }
-    return NULL;
+    return nullptr;
 }
 
 static void breakRoad(Document* theDocument, CommandList* theList, Way* R, Node* Pt)
@@ -562,7 +562,7 @@ void breakRoads(Document* theDocument, CommandList* theList, PropertiesDock* the
 
 bool canCreateJunction(PropertiesDock* theDock)
 {
-    return createJunction(NULL, NULL, theDock, false);
+    return createJunction(nullptr, nullptr, theDock, false);
 }
 
 int createJunction(Document* theDocument, CommandList* theList, PropertiesDock* theDock, bool doIt)
@@ -814,8 +814,8 @@ void bingExtract(Document* theDocument, CommandList* theList, PropertiesDock* th
         QList<Feature*> theFeats = theDocument->mergeDocument(newDoc, newLayer, theList);
 
         // Merge in initial nodes
-        Node * N0 = NULL;
-        Node * N1 = NULL;
+        Node * N0 = nullptr;
+        Node * N1 = nullptr;
         qreal Best0 = 180., Best1 = 180.;
 
         foreach (Feature* F, theFeats) {
@@ -996,7 +996,7 @@ void commitFeatures(Document* theDocument, CommandList* theList, PropertiesDock*
 
 void addRelationMember(Document* theDocument, CommandList* theList, PropertiesDock* theDock)
 {
-    Relation* theRelation = NULL;
+    Relation* theRelation = nullptr;
     QList<Feature*> Features;
     for (int i=0; i<theDock->selectionSize(); ++i)
         if ((theDock->selection(i)->getClass() == "Relation") && !theRelation)
@@ -1013,7 +1013,7 @@ void addRelationMember(Document* theDocument, CommandList* theList, PropertiesDo
 
 void removeRelationMember(Document* theDocument, CommandList* theList, PropertiesDock* theDock)
 {
-    Relation* theRelation = NULL;
+    Relation* theRelation = nullptr;
     QList<Feature*> Features;
     for (int i=0; i<theDock->selectionSize(); ++i)
         if ((theDock->selection(i)->getClass() == "Relation") && !theRelation)
@@ -1034,7 +1034,7 @@ void removeRelationMember(Document* theDocument, CommandList* theList, Propertie
 
 void addToMultipolygon(Document* theDocument, CommandList* theList, PropertiesDock* theDock)
 {
-    Relation* theRelation = NULL;
+    Relation* theRelation = nullptr;
     QList<Way*> theWays;
     for (int i=0; i<theDock->selectionSize(); ++i) {
         if (!theRelation && CHECK_RELATION(theDock->selection(i)) && theDock->selection(i)->tagValue("type", "") == "multipolygon")
@@ -1062,7 +1062,7 @@ void addToMultipolygon(Document* theDocument, CommandList* theList, PropertiesDo
             outer = theWays[i];
         else
             if (theWays[i]->boundingBox().intersects(outer->boundingBox()))
-                outer = NULL;
+                outer = nullptr;
     }
     if (outer) {
         if (!theRelation) {
@@ -1105,8 +1105,8 @@ static void subdivideRoad(Document* theDocument, CommandList* theList,
 bool canSubdivideRoad(PropertiesDock* theDock, Way** outTheRoad, unsigned int* outEdge)
 {
     // Get the selected way and nodes
-    Way* theRoad = NULL;
-    Node* theNodes[2] = { NULL, NULL };
+    Way* theRoad = nullptr;
+    Node* theNodes[2] = { nullptr, nullptr };
     for (int i = 0; i < theDock->selectionSize(); ++i) {
         if ((theDock->selection(i)->getClass() == "Way") && !theRoad)
             theRoad = CAST_WAY(theDock->selection(i));
@@ -1405,8 +1405,8 @@ bool canSplitArea(PropertiesDock* theDock, Way** outTheArea, unsigned int outNod
         return false;
 
     // Get the selected way and nodes
-    Way* theArea = NULL;
-    Node* theNodes[2] = { NULL, NULL };
+    Way* theArea = nullptr;
+    Node* theNodes[2] = { nullptr, nullptr };
     for (int i = 0; i < theDock->selectionSize(); ++i) {
         if ((theDock->selection(i)->getClass() == "Way") && !theArea)
             theArea = CAST_WAY(theDock->selection(i));
@@ -1507,8 +1507,8 @@ static void terraceArea(Document* theDocument, CommandList* theList,
 bool canTerraceArea(PropertiesDock* theDock, Way** outTheArea, int* startNode)
 {
     // Get the selected area
-    Way* theArea = NULL;
-    Node* theNode = NULL;
+    Way* theArea = nullptr;
+    Node* theNode = nullptr;
     for (int i = 0; i < theDock->selectionSize(); ++i)
         if ((theDock->selection(i)->getClass() == "Way") && !theArea) {
             theArea = CAST_WAY(theDock->selection(i));

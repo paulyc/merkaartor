@@ -57,7 +57,7 @@ bool ImportExportOSC::import(Layer* aLayer)
         return false;
     }
 
-    CommandList* theList = new CommandList(QApplication::tr("Import osmChange"), NULL);
+    CommandList* theList = new CommandList(QApplication::tr("Import osmChange"), nullptr);
 
     Layer* dLayer = theDoc->getLastDownloadLayer();
     if (!dLayer) {
@@ -66,7 +66,7 @@ bool ImportExportOSC::import(Layer* aLayer)
     }
 
     QList<IFeature::FId> featIdList;
-    Feature* F = NULL;
+    Feature* F = nullptr;
     stream.readNext();
     while(!stream.atEnd() && !stream.isEndElement()) {
         if (stream.name() == "create") {

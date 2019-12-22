@@ -66,14 +66,14 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
     driverManager->AutoLoadDrivers();
 
     poDriver = driverManager->GetDriverByName(pszDriverName);
-    if( poDriver == NULL )
+    if( poDriver == nullptr )
     {
         qDebug( "%s driver not available.", pszDriverName );
         return false;
     }
 
     /* Create create options */
-    char **createOptions = NULL;
+    char **createOptions = nullptr;
     createOptions = CSLSetNameValue( createOptions, "SPATIALITE", "YES" );
 
     /* Open new dataset */
@@ -81,12 +81,12 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
 
     QFile::remove(fileName);
     poDS = poDriver->Create( fileName.toUtf8().constData(), 0, 0, 0, GDT_Unknown, createOptions );
-    if( poDS == NULL )
+    if( poDS == nullptr )
     {
         qDebug( "Creation of output file failed." );
         return false;
     }
-    poDS->ExecuteSQL("PRAGMA synchronous = OFF", NULL, NULL);
+    poDS->ExecuteSQL("PRAGMA synchronous = OFF", nullptr, nullptr);
 
     /* Create Spatial reference object */
     OGRSpatialReference *poSRS;
@@ -94,7 +94,7 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
     poSRS->importFromEPSG(4326);
 
     /* Create layer options */
-    char **layerOptions = NULL;
+    char **layerOptions = nullptr;
     layerOptions = CSLSetNameValue( layerOptions, "FORMAT", "SPATIALITE" );
     layerOptions = CSLSetNameValue( layerOptions, "SPATIAL_INDEX", "YES" );
 
@@ -112,7 +112,7 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
     OGRRegisterAll();
 
     poDriver = OGRSFDriverRegistrar::GetRegistrar()->GetDriverByName(pszDriverName);
-    if( poDriver == NULL )
+    if( poDriver == nullptr )
     {
         qDebug( "%s driver not available.", pszDriverName );
         return false;
@@ -121,19 +121,19 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
     OGRDataSource *poDS;
 
     QFile::remove(fileName);
-    poDS = poDriver->CreateDataSource( fileName.toUtf8().constData(), NULL );
-    if( poDS == NULL )
+    poDS = poDriver->CreateDataSource( fileName.toUtf8().constData(), nullptr );
+    if( poDS == nullptr )
     {
         qDebug( "Creation of output file failed." );
         return false;
     }
-    poDS->ExecuteSQL("PRAGMA synchronous = OFF", NULL, NULL);
+    poDS->ExecuteSQL("PRAGMA synchronous = OFF", nullptr, nullptr);
 
     OGRSpatialReference *poSRS;
     poSRS = new OGRSpatialReference();
     poSRS->importFromEPSG(4326);
 
-    char **papszOptions = NULL;
+    char **papszOptions = nullptr;
     papszOptions = CSLSetNameValue( papszOptions, "SPATIALITE", "YES" );
     papszOptions = CSLSetNameValue( papszOptions, "FORMAT", "SPATIALITE" );
     papszOptions = CSLSetNameValue( papszOptions, "SPATIAL_INDEX", "YES" );
@@ -144,7 +144,7 @@ bool ImportExportGdal::export_(const QList<Feature *>& featList)
 #endif
 
 
-    if( poLayer == NULL )
+    if( poLayer == nullptr )
     {
         qDebug( "Layer creation failed." );
         return false;
@@ -240,7 +240,7 @@ Way *ImportExportGdal::readWay(Layer* aLayer, OGRLineString *poRing)
 {
     int numNode = poRing->getNumPoints();
 
-    if (!numNode) return NULL;
+    if (!numNode) return nullptr;
 
     OGRPoint p;
 
@@ -311,12 +311,12 @@ Feature* ImportExportGdal::parseGeometry(Layer* aLayer, OGRGeometry *poGeometry)
             }
             return R;
         } else {
-            return NULL;
+            return nullptr;
         }
     }
     default:
         qWarning("SHP: Unrecognised Geometry type %d, ignored", type);
-        return NULL;
+        return nullptr;
     }
 }
 
@@ -340,7 +340,7 @@ bool ImportExportGdal::importGDALDataset(GDALDataset* poDS, Layer* aLayer, bool 
     OGRLayer  *poLayer = poDS->GetLayer(0);
 
     OGRSpatialReference * theSrs = poLayer->GetSpatialRef();
-    toWGS84 = NULL;
+    toWGS84 = nullptr;
 
     if (theSrs) {
         // Workaround for OSGB - otherwise its datum is ignored (TODO: why?)
@@ -367,11 +367,11 @@ bool ImportExportGdal::importGDALDataset(GDALDataset* poDS, Layer* aLayer, bool 
         char* cTheProj;
         if (theSrs->exportToProj4(&cTheProj) == OGRERR_NONE) {
             sPrj = QString(cTheProj);
-            OGRFree(cTheProj);
+            CPLFree(cTheProj);
         } else {
             if (theSrs->exportToWkt(&cTheProj) == OGRERR_NONE) {
                 sPrj = QString(cTheProj);
-                OGRFree(cTheProj);
+                CPLFree(cTheProj);
             }
         }
         projTitle = QCoreApplication::translate("ImportExportGdal", "Confirm projection");
@@ -418,12 +418,12 @@ bool ImportExportGdal::importGDALDataset(GDALDataset* poDS, Layer* aLayer, bool 
 
         int curImported = 0;
 //        poLayer->ResetReading();
-        while( (poFeature = poLayer->GetNextFeature()) != NULL && !progress.wasCanceled())
+        while( (poFeature = poLayer->GetNextFeature()) != nullptr && !progress.wasCanceled())
         {
             OGRGeometry *poGeometry;
 
             poGeometry = poFeature->GetGeometryRef();
-            if( poGeometry != NULL) {
+            if( poGeometry != nullptr) {
                 // qDebug( "GeometryType : %d,", poGeometry->getGeometryType() );
 
                 poGeometry->transform(toWGS84);
@@ -486,14 +486,14 @@ bool ImportExportGdal::import(Layer* aLayer)
 #ifdef GDAL2
     GDALAllRegister();
     GDALDataset *poDS;
-    poDS = (GDALDataset *) GDALOpenEx( FileName.toUtf8().constData(), GDAL_OF_VECTOR | GDAL_OF_RASTER | GDAL_OF_VERBOSE_ERROR, NULL, NULL, NULL );
+    poDS = (GDALDataset *) GDALOpenEx( FileName.toUtf8().constData(), GDAL_OF_VECTOR | GDAL_OF_RASTER | GDAL_OF_VERBOSE_ERROR, nullptr, nullptr, nullptr );
 #else
     OGRRegisterAll();
     OGRDataSource *poDS;
     poDS = OGRSFDriverRegistrar::Open( FileName.toUtf8().constData(), FALSE );
 #endif
 
-    if( poDS == NULL ) {
+    if( poDS == nullptr ) {
         //qDebug() << "GDAL Open failed from file " << FileName.toUtf8().constData();
         return false;
     }
@@ -520,7 +520,7 @@ bool ImportExportGdal::import(Layer* aLayer, const QByteArray& ba, bool confirmP
     poDS = OGRSFDriverRegistrar::Open( "/vsimem/temp", FALSE );
 #endif
 
-    if( poDS == NULL )
+    if( poDS == nullptr )
     {
         qDebug( "GDAL Open failed.\n" );
         return false;

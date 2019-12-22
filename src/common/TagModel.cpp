@@ -126,7 +126,7 @@ bool TagModel::setData(const QModelIndex &index, const QVariant &value, int role
         if (index.column() == 0) {
             for (int i = 0; i < Tags.size(); i++) {
                 if ((i != index.row()) && (Tags[i].first == value.toString())) {
-                    QMessageBox::warning(NULL, tr("Tag editor"), tr("Tag with this name already exists."));
+                    QMessageBox::warning(nullptr, tr("Tag editor"), tr("Tag with this name already exists."));
                     return false;
                 }
             }
@@ -139,7 +139,7 @@ bool TagModel::setData(const QModelIndex &index, const QVariant &value, int role
                 beginInsertRows(QModelIndex(), Tags.size()+1, Tags.size()+1);
                 CommandList* L;
                 if (theFeatures.size() > 1)
-                    L = new CommandList(MainWindow::tr("Set tags on multiple features"), NULL);
+                    L = new CommandList(MainWindow::tr("Set tags on multiple features"), nullptr);
                 else
                     L = new CommandList(MainWindow::tr("Set tags on %1").arg(theFeatures[0]->id().numId), theFeatures[0]);
                 for (int i=0; i<theFeatures.size(); ++i)
@@ -170,7 +170,7 @@ bool TagModel::setData(const QModelIndex &index, const QVariant &value, int role
                 Tags[index.row()].second = value.toString();
             CommandList* L;
             if (theFeatures.size() > 1)
-                L = new CommandList(MainWindow::tr("Set tags on multiple features"), NULL);
+                L = new CommandList(MainWindow::tr("Set tags on multiple features"), nullptr);
             else
                 L = new CommandList(MainWindow::tr("Set tags on %1").arg(theFeatures[0]->id().numId), theFeatures[0]);
             for (int i=0; i<theFeatures.size(); ++i)

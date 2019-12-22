@@ -73,7 +73,7 @@ void BuildBridgeInteraction::snapMouseReleaseEvent(QMouseEvent * ev, Feature* aF
     } */
 
 
-	Node* addNode = NULL;
+	Node* addNode = nullptr;
 
     Way* aRoad = dynamic_cast<Way*>(aFeat);
     if (aRoad) {
@@ -108,7 +108,7 @@ void BuildBridgeInteraction::splitAndMark() {
 		return;
 	}
 	
-    CommandList* theList = new CommandList(tr("Convert segment to bridge"), NULL);
+    CommandList* theList = new CommandList(tr("Convert segment to bridge"), nullptr);
 	Way *R = cutoutRoad(g_Merk_MainWindow->document(), theList, g_Merk_MainWindow->properties(), firstNode, secondNode);
 	if (R) {
 		/* Add the bridge=yes/tunnel=culvert tag, including possible layer increase if nonexistent */
@@ -149,7 +149,7 @@ QCursor BuildBridgeInteraction::cursor() const
 
 Node *BuildBridgeInteraction::createNode(Coord P, Feature* aFeat)
 {
-    Node* N = NULL;
+    Node* N = nullptr;
     CommandList* theList;
     Way* aRoad = dynamic_cast<Way*>(aFeat);
 	/* Bridge can be only created from existing roads */

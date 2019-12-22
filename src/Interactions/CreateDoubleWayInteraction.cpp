@@ -63,7 +63,7 @@ void CreateDoubleWayInteraction::paintEvent(QPaintEvent* /* anEvent */, QPainter
     if (R1 && (!R1->layer() || R1->isDeleted())) { // The roads were begon and then undoed. Restarting....
         HaveFirst = false;
         view()->setInteracting(false);
-        R1 = R2 = NULL;
+        R1 = R2 = nullptr;
     }
 
     qreal rB = view()->pixelPerM()*DockData.RoadDistance->text().toDouble()/2;

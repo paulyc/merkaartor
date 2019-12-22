@@ -55,7 +55,7 @@ protected:
             isAtEnd = true;
             return false;
         }
-        if (qobject_cast<L>(theDocument->getLayer((curLayerIdx))) == NULL)
+        if (qobject_cast<L>(theDocument->getLayer((curLayerIdx))) == nullptr)
             return false;
 
         return true;
